@@ -1,0 +1,110 @@
+{
+  "footnote": {
+    "scope": "markdown,html",
+    "prefix": "fn,footnote",
+    "body": ["{{footnote '$1'}}"],
+    "description": "custom footnote"
+  },
+  "qrcode": {
+    "scope": "markdown,html",
+    "prefix": "qr,qrcode",
+    "body": [
+      "![$1](./../images/qrcode/$2.png){id=\"image\" data-image-from=\"qrcode\"}"
+    ],
+    "description": "custom qrcode"
+  },
+  "screenshots": {
+    "scope": "markdown,html",
+    "prefix": "img,image,screenshots",
+    "body": [
+      "![$1](./../images/screenshots/$2.png){id=\"image\" data-image-from=\"other\"}"
+    ],
+    "description": "custom other image"
+  },
+  "codeblock": {
+    "scope": "markdown,html",
+    "prefix": "codeblock",
+    "body": ["```${1:html} title=\"$2\"", "$3", "```"],
+    "description": "custom other image"
+  },
+  "chat-left": {
+    "scope": "markdown,html",
+    "prefix": "chat-left-start",
+    "body": [
+      "{{chat",
+      "  (chat-left '$1' 'せんぱい' 'balloon-indigo-200' './../images/maid-engineers/1_Introduction_reversed_icon.png')",
+      "}}"
+    ],
+    "description": "custom chat left start"
+  },
+  "chat-right": {
+    "scope": "markdown,html",
+    "prefix": "chat-right-start",
+    "body": [
+      "{{chat",
+      "  (chat-right '$2' 'こうはい' 'balloon-fuchsia-200' './../images/maid-engineers/2_Introduction2_reversed_icon.png')",
+      "}}"
+    ],
+    "description": "custom chat right start"
+  },
+  "chat-left-repeat": {
+    "scope": "markdown,html",
+    "prefix": "chat-left-repeat",
+    "body": ["{{chat", "(repeat-chat-left '$1' 'balloon-indigo-200')", "}}"],
+    "description": "custom chat left repeat"
+  },
+  "chat-right-repeat": {
+    "scope": "markdown,html",
+    "prefix": "chat-right-repeat",
+    "body": ["{{chat", "(repeat-chat-right '$1' 'balloon-fuchsia-200')", "}}"],
+    "description": "custom chat right repeat"
+  },
+  "chat-header": {
+    "scope": "markdown,html",
+    "prefix": "chat-header",
+    "body": ["{{chat", "(chat-header '$1')", "}}"],
+    "description": "custom chat header"
+  },
+  "chapter-cover": {
+    "scope": "markdown,html",
+    "prefix": "chapter-cover",
+    "body": ["{{chapter-cover ${1:1} '${2:title}'}}"],
+    "description": "custom chapter cover"
+  },
+  "page-break": {
+    "scope": "markdown,html",
+    "prefix": "----,pb,page-break",
+    "body": ["{{page-break}}"],
+    "description": "custom page break"
+  },
+  "left-break": {
+    "scope": "markdown,html",
+    "prefix": "----,pb,page-break,left",
+    "body": ["{{left-break}}"],
+    "description": "custom left page break"
+  },
+  "right-break": {
+    "scope": "markdown,html",
+    "prefix": "----,pb,page-break,right",
+    "body": ["{{right-break}}"],
+    "description": "custom right page break"
+  },
+  "appendix": {
+    "scope": "markdown,html",
+    "prefix": "appendix",
+    "body": ["{{add-appendix filePath '${1:id}' '${2:text}'}}"],
+    "description": "custom appendix"
+  },
+  "chapref": {
+    "scope": "markdown,html",
+    "prefix": "ref,chap",
+    "body": ["{{chapref '${1:ch}'}}"],
+    "description": "custom chapref"
+  },
+  "h2ref": {
+    "scope": "markdown,html",
+    "prefix": "ref,h2",
+    "body": ["{{h2ref '${1:ch}' '${2:id}'}}"],
+    "description": "custom h2ref"
+  }
+}

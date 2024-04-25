@@ -1,0 +1,786 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* MEMO: Topに@importで書く必要がある https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports */
+
+@page {
+  size: jis-b5;
+  /* margin: 10% !important; */
+  /* トンボを追加 */
+  /* marks: crop cross; */
+  /* トンボの塗り足しを3mmに設定 */
+  /* bleed: 3mm; */
+  margin-top: 25mm;
+  margin-bottom: 33mm;
+  /* not footnote counter reset */
+  /* counter-reset: footnote; */
+  @bottom-center {
+    content: counter(page);
+  }
+  @top-center {
+    content: element(topCenter);
+  }
+  @footnote {
+    float: bottom;
+  }
+}
+
+@page :left {
+  /* 左ページの右余白を広げる */
+  /* 上 | 右 | 下 | 左 */
+  margin: 10% 8% 10% 12%;
+
+  @top-left-corner {
+    content: element(topLeftCorner);
+  }
+  @top-left {
+    content: env(pub-title);
+  }
+  @top-right-corner {
+    content: element(topRightCorner);
+  }
+  @top-right {
+    content: element(topRight);
+  }
+  @left-top {
+    content: element(leftPageLeftTop);
+  }
+  @left-middle {
+    content: element(leftPageLeftMiddle);
+  }
+  @left-bottom {
+    content: element(leftPageLeftBottom);
+  }
+  @bottom-left-corner {
+    content: element(bottomLeftCorner);
+  }
+  @bottom-left {
+    content: element(bottomLeft);
+  }
+  @bottom-right-corner {
+    content: element(bottomRightCorner);
+  }
+  @bottom-right {
+    content: element(bottomRight);
+  }
+}
+
+@page :right {
+  /* 右ページの左余白を広げる */
+  /* 上 | 右 | 下 | 左 */
+  margin: 10% 12% 10% 8%;
+
+  @top-right-corner {
+    content: element(topLeftCorner);
+  }
+  @top-right {
+    content: "第" counter(chapter) "章 " env(doc-title);
+  }
+  @top-left-corner {
+    content: element(topRightCorner);
+  }
+  @top-left {
+    content: element(topRight);
+  }
+  @right-top {
+    content: element(rightPageRightTop);
+  }
+  @right-middle {
+    content: element(rightPageRightMiddle);
+  }
+  @right-bottom {
+    content: element(rightPageRightBottom);
+  }
+  @bottom-left-corner {
+    content: element(bottomRightCorner);
+  }
+  @bottom-left {
+    content: element(bottomRight);
+  }
+  @bottom-right-corner {
+    content: element(bottomLeftCorner);
+  }
+  @bottom-right {
+    content: element(bottomLeft);
+  }
+}
+
+/* cover */
+.cover {
+  page: cover;
+  page-break-before: always; /* Use if your last page is blank, else omit. */
+}
+@page cover {
+  background-image: var(--cover-url);
+  background-size: cover;
+  background-repeat: no-repeat;
+  @top-left-corner {
+    content: none;
+  }
+  @top-center {
+    content: none;
+  }
+  @top-right-corner {
+    content: none;
+  }
+  @top-right {
+    content: none;
+  }
+  @bottom-center {
+    content: none;
+  }
+  @bottom-left-corner {
+    content: none;
+  }
+  @bottom-left {
+    content: none;
+  }
+  @bottom-right {
+    content: none;
+  }
+  @bottom-right-corner {
+    content: none;
+  }
+}
+
+:root {
+  @apply font-["Rounded_Mgen+_2p","Rounded_Mplus_1c","PlemolJP"] [line-height:1.75] text-[10px];
+}
+
+/* リンク */
+a {
+  @apply whitespace-pre-wrap break-all;
+}
+
+.writing-mode-vertical-rl {
+  writing-mode: vertical-rl;
+}
+
+/* インラインコード */
+p > code {
+  @apply px-1 py-0.5 bg-primary-200 rounded mx-1;
+}
+
+/* タスクリスト */
+ul.contains-task-list {
+  @apply space-y-2;
+}
+ul.contains-task-list > li.task-list-item > input[type="checkbox"] {
+  @apply scale-150;
+}
+ul.contains-task-list > li.task-list-item {
+  @apply flex items-center flex-row gap-2 text-xl;
+}
+ul.contains-task-list > li.task-list-item::before {
+  @apply text-2xl content-["-"];
+}
+
+/* ソースコードの埋め込み */
+.embedCode {
+  @apply block mx-auto my-0 max-w-full h-auto;
+}
+.embedCodeCaption {
+  @apply text-center -mt-3 text-sm font-bold ci-[caption];
+}
+.embedCodeCaption::before {
+  content: "コード" counter(chapter) "-" counter(caption) ". ";
+}
+
+/* shiki */
+.astro-code,
+.shiki {
+  @apply font-["Rounded_Mgen+_1mn","PlemolJP_Console"] rounded px-4 py-2 border border-gray-300 border-solid block whitespace-pre-wrap break-all;
+}
+.shiki .diff,
+.shiki .highlighted {
+  @apply -mx-4 px-4 py-[2px];
+}
+
+/* DOC: https://github.com/shikijs/shiki/issues/3#issuecomment-830564854 */
+/* DOC: https://github.com/shikijs/shiki/blob/main/packages/transformers/test/fixtures/diff/a.js.output.html */
+.shiki > code {
+  counter-reset: shiki_line_number;
+  counter-increment: shiki_line_number 0;
+}
+.shiki > code .line:not(:last-child)::before {
+  @apply w-4 mr-6 inline-block text-right text-gray-600;
+  content: counter(shiki_line_number);
+  counter-increment: shiki_line_number;
+}
+.shiki > code .line.diff.add {
+  @apply bg-[rgba(117,249,117,0.4)];
+}
+.shiki > code .line.diff.add::before {
+  @apply text-[green] w-8;
+  content: counter(shiki_line_number) " +";
+}
+.shiki > code .line.diff.remove {
+  @apply bg-[rgba(250,112,112,0.4)];
+}
+.shiki > code .line.diff.remove::before {
+  @apply text-[red] w-8;
+  content: counter(shiki_line_number) " -";
+}
+
+/* DOC: https://github.com/shikijs/shiki/blob/main/packages/transformers/test/fixtures/highlight/a.js.output.html */
+.shiki .highlighted { @apply bg-[rgba(0,119,255,0.2)]; }
+
+/* DOC: https://github.com/shikijs/shiki/blob/main/packages/transformers/test/fixtures/highlight-word/occurrence.js.output.html */
+.shiki .highlighted-word {
+  @apply py-[2px] bg-[rgba(0,119,255,0.2)];
+}
+
+/* DOC: https://github.com/shikijs/shiki/blob/main/packages/transformers/test/fixtures/error-level/a.js.output.html */
+.shiki .highlighted.warning { @apply bg-[rgba(255,255,3,0.5)]; }
+.shiki .highlighted.error { @apply bg-[rgba(255,0,0,0.5)]; }
+
+/* Page Running elements https://www.w3.org/TR/css-gcpm-3/#running-elements */
+.topCenter {
+  position: running(topCenter);
+}
+.topRight {
+  position: running(topRight);
+}
+.topRightCorner {
+  position: running(topRightCorner);
+}
+.topLeftCorner {
+  position: running(topLeftCorner);
+}
+.bottomRight {
+  position: running(bottomRight);
+}
+.bottomRightCorner {
+  position: running(bottomRightCorner);
+}
+.bottomLeft {
+  position: running(bottomLeft);
+}
+.bottomLeftCorner {
+  position: running(bottomLeftCorner);
+}
+.leftPageLeftTop {
+  position: running(leftPageLeftTop);
+}
+.leftPageLeftMiddle {
+  position: running(leftPageLeftMiddle);
+}
+.leftPageLeftBottom {
+  position: running(leftPageLeftBottom);
+}
+.rightPageRightTop {
+  position: running(rightPageRightTop);
+}
+.rightPageRightMiddle {
+  position: running(rightPageRightMiddle);
+}
+.rightPageRightBottom {
+  position: running(rightPageRightBottom);
+}
+
+/* 見出しフォントサイズの調整 */
+@media print {
+  h1 {
+    @apply pt-10 text-4xl font-black mb-2;
+  }
+  h1::before {
+    @apply text-2xl font-bold ml-[2px];
+  }
+  h1 + p {
+    @apply px-3 font-bold;
+  }
+  h2 {
+    @apply text-3xl;
+  }
+  /* h2 > span {
+    @apply pl-3 text-base;
+  } */
+  h3 {
+    @apply text-2xl;
+  }
+  /* h3 > span {
+    @apply pl-3 text-[10px];
+  } */
+  h4 {
+    @apply text-xl;
+  }
+  h5 {
+    @apply text-lg;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: auto !important;
+    break-before: auto !important;
+  }
+  tr,
+  th,
+  td {
+    break-inside: auto !important;
+  }
+}
+
+/* 著者の表示スタイル */
+.doc-author {
+  @apply text-right mb-7;
+  box-shadow: 0 0.7px 0 -0.4px theme("colors.stone.500");
+}
+
+/* 目次の章や節の表示 */
+#toc-body {
+  page: toc;
+}
+@page toc {
+  @top-right {
+    content: none;
+  }
+}
+#toc .header1::before {
+  content: "第" target-counter(attr(data-href), chapter) "章 ";
+}
+#toc .header2::before {
+  content: target-counter(attr(data-href), chapter) "-" target-counter(attr(data-href), header2) ". ";
+}
+#toc .header3::before {
+  content: target-counter(attr(data-href), chapter) "-" target-counter(attr(data-href), header2) "." target-counter(attr(data-href), header3) ". ";
+}
+#toc .header4::before {
+  content: target-counter(attr(data-href), chapter) "-" target-counter(attr(data-href), header2) "." target-counter(attr(data-href), header3) "." target-counter(attr(data-href), header4) ". ";
+}
+#toc .header5::before {
+  content: target-counter(attr(data-href), chapter) "-" target-counter(attr(data-href), header2) "." target-counter(attr(data-href), header3) "." target-counter(attr(data-href), header4) "." target-counter(attr(data-href), header5) ". ";
+}
+
+/* 別の章(h1)や節(h2)へのリンク */
+a.chapref::after {
+  content: " (" target-counter(attr(href), page) "ページ)";
+}
+a.chapref::before {
+  content: "第" target-counter(attr(href), chapter) "章 ";
+}
+a.h2ref::after {
+  content: " / ";
+}
+a.h2ref::before {
+  content: "第" target-counter(attr(href), chapter) "章 ";
+}
+a.h2title::before {
+  content: target-counter(attr(href url), header2) ". ";
+}
+a.h2title::after {
+  content: " (" target-counter(attr(href), page) "ページ)";
+}
+a.imageref::before {
+  content: "図" target-counter(attr(href), chapter) "-" target-counter(attr(href url), caption) ". ";
+}
+a.imageref::after {
+  content: " (" target-counter(attr(href), page) "ページ)";
+}
+a.coderef::before {
+  content: "コード" target-counter(attr(href), chapter) "-" target-counter(attr(href url), caption) ". ";
+}
+a.coderef::after {
+  content: " (" target-counter(attr(href), page) "ページ)";
+}
+a.tableref::before {
+  content: "表" target-counter(attr(href), chapter) "-" target-counter(attr(href url), caption) ". ";
+}
+a.tableref::after {
+  content: " (" target-counter(attr(href), page) "ページ)";
+}
+
+/* チャプターのカウンター */
+@page chapter:first {
+  counter-reset: chapter;
+}
+@page chapter:nth(1) {
+  counter-increment: chapter;
+}
+.chapter h1::before {
+  @apply block mb-1 text-[50%];
+  content: "第" counter(chapter) "章";
+}
+.chapter {
+  page: chapter;
+}
+
+/* h2〜h5のカウンター */
+.chapter body {
+  counter-reset: header2 header3 header4 header5 caption;
+}
+.chapter h1 {
+  counter-reset: header2 header3 header4 header5 caption;
+}
+.chapter h2::before {
+  @apply block text-[70%];
+  content: counter(chapter) "-" counter(header2) ". ";
+}
+.chapter h2 {
+  counter-increment: header2;
+  counter-reset: header3 header4 header5;
+}
+.chapter h3::before {
+  @apply text-[70%];
+  content: counter(chapter) "-" counter(header2) "." counter(header3) ". ";
+}
+.chapter h3 {
+  counter-increment: header3;
+  counter-reset: header4 header5;
+}
+.chapter h4::before {
+  @apply text-[70%];
+  content: counter(chapter) "-" counter(header2) "." counter(header3) "."
+    counter(header4) ". ";
+}
+.chapter h4 {
+  counter-increment: header4;
+  counter-reset: header5;
+}
+.chapter h5::before {
+  @apply text-[70%];
+  content: counter(chapter) "-" counter(header2) "." counter(header3) "."
+    counter(header4) "." counter(header5) ". ";
+}
+.chapter h5 {
+  counter-increment: header5;
+}
+
+/* footnote */
+.footnote {
+  float: footnote;
+  footnote-display: block;
+  counter-increment: footnote;
+}
+.footnote::footnote-call {
+  content: "[" counter(footnote) "]";
+  display: inline;
+  vertical-align: super;
+}
+.footnote::footnote-marker {
+  content: "[" counter(footnote) "] ";
+  display: inline;
+}
+
+/* footnote inline */
+.footnote-inline {
+  background-color: #eee;
+  color: gray;
+  font-size: 10px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 0.25rem;
+}
+.footnote-inline a {
+  word-break: break-all;
+}
+
+/* appendix */
+#appendix-body {
+  page: appendix;
+}
+@page appendix {
+  @top-right {
+    content: none;
+  }
+}
+.appendix {
+  @apply px-1 py-1;
+  background-color: var(--ichimatsu-1color, theme("colors.yellow.200"));
+  border-radius: 0.25rem;
+}
+
+/* 1段組み用のスタイル */
+.colmun-count-1 {
+  column-count: 1;
+}
+/* 2段組み用のスタイル */
+.colmun-count-2 {
+  /* @apply pb-7; */
+  column-count: 2;
+  column-gap: 2rem;
+  column-rule: solid 1px theme("colors.stone.300");
+  /* column-fill: balance-all; */
+  /* column-fill: balance; */
+  column-fill: auto;
+}
+/* 2段組みをまたぐ要素（見出し、画像、ソースコード）などに指定する */
+.column-span-all {
+  /* INFO: https://github.com/vivliostyle/vivliostyle.js/issues/542 */
+  float-reference: column;
+  float: top;
+  column-span: all;
+}
+.column-span-all-h5 {
+  background-color: lightgray;
+  padding: 1rem;
+  column-span: all;
+}
+.column-span-all-amber-100 {
+  @apply column-span-all;
+  background-color: theme("colors.amber.100");
+  color: theme("colors.amber.800");
+}
+.column-span-all-stone-100 {
+  @apply column-span-all;
+  background-color: theme("colors.stone.100");
+  color: theme("colors.stone.800");
+}
+
+/* チャットエリアのスタイル */
+.chat {
+  @apply space-y-2;
+  padding-left: 0px;
+}
+.chat-header {
+  @apply flex content-center justify-center text-center list-none;
+}
+.chat-header > div {
+  @apply px-4 py-2 mt-4 text-xs rounded-full min-w-fit max-w-fit;
+  background-color: theme("colors.stone.200");
+  color: theme("colors.stone.800");
+  border-color: transparent;
+}
+.chat-left {
+  @apply flex justify-start pt-4;
+}
+.chat-left-invisible {
+  @apply flex justify-start;
+}
+.chat-left-invisible .trianle-left,
+.chat-left-invisible .chat-faceicon {
+  @apply invisible;
+}
+.chat-right {
+  @apply flex justify-end pt-4;
+}
+.chat-right-invisible {
+  @apply flex justify-end;
+}
+.chat-right-invisible .trianle-right,
+.chat-right-invisible .chat-faceicon {
+  @apply invisible;
+}
+.chat-contents {
+  @apply px-4;
+}
+.chat-faceicon {
+  @apply relative p-0;
+}
+.chat-faceicon > img {
+  @apply w-16 h-16;
+  border-radius: 50%;
+}
+.chat-faceicon-name {
+  @apply absolute left-0 right-0 m-auto text-[8px] text-center top-[4.125rem];
+}
+.chat .qrcode {
+  @apply w-36;
+}
+.balloon {
+  @apply relative max-w-xl px-4 py-2 rounded-lg border-[1px] border-solid my-1;
+  border-color: transparent;
+}
+.balloon > .trianle-left {
+  border: 1rem solid transparent;
+  position: absolute;
+  left: -1.75rem;
+  top: 0;
+  transform: rotate(0deg);
+}
+.balloon > .trianle-right {
+  border: 1rem solid transparent;
+  position: absolute;
+  right: -1.75rem;
+  top: 0;
+  transform: rotate(180deg);
+}
+.balloon-indigo-200 {
+  @apply balloon;
+  background-color: theme("colors.indigo.200");
+  color: theme("colors.indigo.800");
+  border-color: transparent;
+}
+.balloon-indigo-200 > .trianle-left {
+  border-right: 1rem solid theme("colors.indigo.200");
+}
+.balloon-indigo-200 > .trianle-right {
+  border-right: 1rem solid theme("colors.indigo.200");
+}
+.balloon-fuchsia-200 {
+  @apply balloon;
+  background-color: theme("colors.fuchsia.200");
+  color: theme("colors.fuchsia.800");
+  border-color: transparent;
+}
+.balloon-fuchsia-200 > .trianle-left {
+  border-right: 1rem solid theme("colors.fuchsia.200");
+}
+.balloon-fuchsia-200 > .trianle-right {
+  border-right: 1rem solid theme("colors.fuchsia.200");
+}
+.balloon-stone-200 {
+  @apply balloon;
+  background-color: theme("colors.stone.200");
+  color: theme("colors.stone.800");
+  border-color: transparent;
+}
+.balloon-stone-200 > .trianle-left {
+  border-right: 1rem solid theme("colors.stone.200");
+}
+.balloon-stone-200 > .trianle-right {
+  border-right: 1rem solid theme("colors.stone.200");
+}
+.balloon-contents {
+  @apply p-2;
+}
+.balloon-contents > img {
+  @apply w-full mt-2;
+}
+
+/* 画像埋め込み */
+.embedImage {
+  @apply block mx-auto my-0 max-w-full h-auto;
+}
+.embedImageCaption {
+  @apply text-center text-sm font-bold ci-[caption];
+}
+.embedImageCaption::before {
+  content: "図" counter(chapter) "-" counter(caption) ". ";
+}
+.embedImageFigure {
+  @apply block text-center;
+}
+
+/* Mermaid、PlantUML */
+img[id^="mermaid-"], img[src^="https://www.plantuml.com/plantuml/png/"] {
+  @apply block max-w-[75%] h-auto mx-auto my-0;
+}
+
+/* チャプターカバー */
+a.chapterCoverTitle::before {
+  content: "Chapter" target-counter(attr(href), chapter) " ";
+}
+
+/* 左柱 */
+a.leftPillarChapter::before {
+  content: "第" target-counter(attr(href), chapter) "章 ";
+  writing-mode: vertical-rl;
+}
+
+/* 右柱 TODO: 時々、??になるバグがあるので使わない */
+/* a.rightPillarChapterNo::after {
+  content: target-counter(attr(href), chapter) "章 ";
+} */
+
+/* テーブル */
+table {
+  @apply border-collapse;
+}
+table caption {
+  @apply text-sm font-bold caption-bottom ci-[caption];
+}
+table caption::before {
+  content: "表" counter(chapter) "-" counter(caption) ". ";
+}
+table th,
+table td {
+  @apply px-1 py-2 border-0 border-solid border-x-2 border-white;
+}
+table th:first-child,
+table td:first-child {
+  @apply py-2 pl-2;
+}
+table th {
+  @apply text-xs bg-primary-500 border-solid border-y-2 text-white;
+}
+table td {
+ @apply bg-primary-200
+}
+table tr {
+  @apply border-solid border-b-2 border-white;
+}
+table tr:last-child {
+  @apply border-b-2 border-solid border-white;
+}
+
+/* 奥付のスタイル */
+#colophon {
+  page: colophon;
+}
+@page colophon {
+  @top-right {
+    content: none;
+  }
+}
+#colophon {
+  @apply relative [float:bottom] [float-reference:page] mb-0;
+}
+#colophon .editions {
+  font-size: 1em;
+  padding: 0;
+  list-style: none;
+}
+#colophon .info {
+  width: 100%;
+}
+#colophon .info tr {
+  border: 0;
+  box-shadow: none;
+  background-color: white;
+}
+#colophon .info tr:first-child {
+  box-shadow: 0 -1.5px 0 -0.4px theme("colors.stone.500");
+}
+#colophon .info tr:last-child {
+  box-shadow: 0 1.4px 0 -0.4px theme("colors.stone.500");
+}
+#colophon .info td {
+  vertical-align: top;
+  padding-left: 0;
+  font-size: 1em;
+  background-color: white;
+}
+#colophon .info td:first-child {
+  text-align: center;
+}
+
+/* 著者プロフィールのスタイル */
+#profile {
+  page: profile;
+}
+@page profile {
+  @top-right {
+    content: none;
+  }
+}
+#profile {
+  break-before: left;
+}
+#profile .author {
+  display: flex;
+  margin: 1rem 0;
+}
+#profile .author img {
+  margin: 0 10px 8px 0;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: theme("colors.stone.300");
+}
+#profile .profile {
+  flex-grow: 1;
+}
+#profile .profile h5 {
+  margin-top: 4px;
+  margin-bottom: 0px;
+}
+#profile .profile h4 {
+  margin-top: 3px;
+  margin-bottom: 0px;
+}
