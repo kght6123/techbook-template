@@ -1,38 +1,70 @@
 {
   "footnote": {
     "scope": "markdown,html",
-    "prefix": "fn,footnote",
+    "prefix": "footnote",
     "body": ["{{footnote '$1'}}"],
     "description": "custom footnote"
   },
-  "qrcode": {
+  "footnote-inline": {
     "scope": "markdown,html",
-    "prefix": "qr,qrcode",
-    "body": [
-      "![$1](./../images/qrcode/$2.png){id=\"image\" data-image-from=\"qrcode\"}"
-    ],
-    "description": "custom qrcode"
-  },
-  "screenshots": {
-    "scope": "markdown,html",
-    "prefix": "img,image,screenshots",
-    "body": [
-      "![$1](./../images/screenshots/$2.png){id=\"image\" data-image-from=\"other\"}"
-    ],
-    "description": "custom other image"
+    "prefix": "footnote,inline",
+    "body": ["{{footnote-inline '$1'}}"],
+    "description": "custom footnote inline"
   },
   "codeblock": {
     "scope": "markdown,html",
     "prefix": "codeblock",
-    "body": ["```${1:html} title=\"$2\"", "$3", "```"],
-    "description": "custom other image"
+    "body": ["```${1:html} title:\"$2\"", "$3", "```"],
+    "description": "codeblock and title"
+  },
+  "codeblock-highlight": {
+    "scope": "markdown,html",
+    "prefix": "codeblock",
+    "body": ["```${1:html} {$2} title:\"$3\"", "$4", "```"],
+    "description": "codeblock and line highlight"
+  },
+  "codeblock-word-highlight": {
+    "scope": "markdown,html",
+    "prefix": "codeblock",
+    "body": ["```${1:html} /$2/ title:\"$3\"", "$4", "```"],
+    "description": "codeblock and word highlight"
+  },
+  "mermaid": {
+    "scope": "markdown,html",
+    "prefix": "mermaid",
+    "body": ["<!-- title: $1 -->", "```mermaid", "$2", "```"],
+    "description": "mermaid"
+  },
+  "plantuml": {
+    "scope": "markdown,html",
+    "prefix": "plantuml",
+    "body": ["```plantuml $1", "$2", "```"],
+    "description": "plantuml"
+  },
+  "title": {
+    "scope": "markdown,html",
+    "prefix": "title",
+    "body": ["<!-- title: $1 -->"],
+    "description": "title"
+  },
+  "image-width": {
+    "scope": "markdown,html",
+    "prefix": "image",
+    "body": ["![$1,width:$2%](../images/$3)"],
+    "description": "image with width"
+  },
+  "table": {
+    "scope": "markdown,html",
+    "prefix": "table",
+    "body": ["`<!-- title: $1 -->", "| 自動 | 左揃え | 右揃え |  中央揃え  |", "| - | :- | -: | :-: |", "| 1 | 2 | 3 | 4 |", "| 5 | 6 | 7 | 8 |", "| 9 | 10 | 11 | 12 |"],
+    "description": "table"
   },
   "chat-left": {
     "scope": "markdown,html",
     "prefix": "chat-left-start",
     "body": [
       "{{chat",
-      "  (chat-left '$1' 'せんぱい' 'balloon-indigo-200' './../images/maid-engineers/1_Introduction_reversed_icon.png')",
+      "  (chat-left '${1:message}' '${2:name}' 'balloon-indigo-200' 'chat-left-icon.png')",
       "}}"
     ],
     "description": "custom chat left start"
@@ -42,7 +74,7 @@
     "prefix": "chat-right-start",
     "body": [
       "{{chat",
-      "  (chat-right '$2' 'こうはい' 'balloon-fuchsia-200' './../images/maid-engineers/2_Introduction2_reversed_icon.png')",
+      "  (chat-right '${1:message}' '${2:name}' 'balloon-fuchsia-200' 'chat-right-icon.png')",
       "}}"
     ],
     "description": "custom chat right start"
@@ -50,13 +82,13 @@
   "chat-left-repeat": {
     "scope": "markdown,html",
     "prefix": "chat-left-repeat",
-    "body": ["{{chat", "(repeat-chat-left '$1' 'balloon-indigo-200')", "}}"],
+    "body": ["{{chat", "(repeat-chat-left '${1:message}' 'balloon-indigo-200')", "}}"],
     "description": "custom chat left repeat"
   },
   "chat-right-repeat": {
     "scope": "markdown,html",
     "prefix": "chat-right-repeat",
-    "body": ["{{chat", "(repeat-chat-right '$1' 'balloon-fuchsia-200')", "}}"],
+    "body": ["{{chat", "(repeat-chat-right '${1:message}' 'balloon-fuchsia-200')", "}}"],
     "description": "custom chat right repeat"
   },
   "chat-header": {
@@ -64,12 +96,6 @@
     "prefix": "chat-header",
     "body": ["{{chat", "(chat-header '$1')", "}}"],
     "description": "custom chat header"
-  },
-  "chapter-cover": {
-    "scope": "markdown,html",
-    "prefix": "chapter-cover",
-    "body": ["{{chapter-cover ${1:1} '${2:title}'}}"],
-    "description": "custom chapter cover"
   },
   "page-break": {
     "scope": "markdown,html",
@@ -92,19 +118,43 @@
   "appendix": {
     "scope": "markdown,html",
     "prefix": "appendix",
-    "body": ["{{add-appendix filePath '${1:id}' '${2:text}'}}"],
+    "body": ["{{appendix filePath '${1:id}' '${2:text}'}}"],
+    "description": "custom appendix"
+  },
+  "appendix-hideden": {
+    "scope": "markdown,html",
+    "prefix": "appendix,hidden",
+    "body": ["{{appendix-hidden filePath '${1:id}' '${2:text}'}}"],
     "description": "custom appendix"
   },
   "chapref": {
     "scope": "markdown,html",
     "prefix": "ref,chap",
-    "body": ["{{chapref '${1:ch}'}}"],
+    "body": ["{{chapref '${1:filePrefix}'}}"],
     "description": "custom chapref"
   },
-  "h2ref": {
+  "headref": {
     "scope": "markdown,html",
-    "prefix": "ref,h2",
-    "body": ["{{h2ref '${1:ch}' '${2:id}'}}"],
+    "prefix": "ref,head",
+    "body": ["{{headref '${1:filePrefix}' '${2:titlePrefix}'}}"],
     "description": "custom h2ref"
-  }
+  },
+  "imageref": {
+    "scope": "markdown,html",
+    "prefix": "ref,image",
+    "body": ["{{imageref '${1:filePrefix}' 'image-${2:alttext-id}'}}"],
+    "description": "custom h2ref"
+  },
+  "coderef": {
+    "scope": "markdown,html",
+    "prefix": "ref,code",
+    "body": ["{{coderef '${1:filePrefix}' 'code-${2:title-id}'}}"],
+    "description": "custom h2ref"
+  },
+  "tableref": {
+    "scope": "markdown,html",
+    "prefix": "ref,table",
+    "body": ["{{tableref '${1:filePrefix}' 'table-${2:titlet-id}'}}"],
+    "description": "custom h2ref"
+  },
 }
