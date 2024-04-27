@@ -215,15 +215,15 @@ pie
 
 ## imageref
 
-{{imageref '99-1' 'image-alt-text'}}
+{{imageref '99-1' 'alt-text'}}
 
 ## coderef
 
-{{coderef '99-1' 'code-hello-のみハイライト'}}
+{{coderef '99-1' 'hello-のみハイライト'}}
 
 ## tableref
 
-{{tableref '99-1' 'table-テーブルのキャプション'}}
+{{tableref '99-1' 'テーブルのキャプション'}}
 
 ## Appendix Tag
 

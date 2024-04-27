@@ -142,19 +142,19 @@
   "imageref": {
     "scope": "markdown,html",
     "prefix": "ref,image",
-    "body": ["{{imageref '${1:filePrefix}' 'image-${2:alttext-id}'}}"],
+    "body": ["{{imageref '${1:filePrefix}' '${2:alttext-id}'}}"],
     "description": "custom h2ref"
   },
   "coderef": {
     "scope": "markdown,html",
     "prefix": "ref,code",
-    "body": ["{{coderef '${1:filePrefix}' 'code-${2:title-id}'}}"],
+    "body": ["{{coderef '${1:filePrefix}' '${2:title-id}'}}"],
     "description": "custom h2ref"
   },
   "tableref": {
     "scope": "markdown,html",
     "prefix": "ref,table",
-    "body": ["{{tableref '${1:filePrefix}' 'table-${2:titlet-id}'}}"],
+    "body": ["{{tableref '${1:filePrefix}' '${2:titlet-id}'}}"],
     "description": "custom h2ref"
   },
 }

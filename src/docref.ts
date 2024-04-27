@@ -52,7 +52,7 @@ export const docrefRegisterHelper = () => {
     }
     const { html } = toc;
     return new Handlebars.SafeString(
-      `<a class="imageref" href="${html}#${id}"></a>`,
+      `<a class="imageref" href="${html}#image-${id}"></a>`,
     );
   });
 
@@ -66,7 +66,7 @@ export const docrefRegisterHelper = () => {
     }
     const { html } = toc;
     return new Handlebars.SafeString(
-      `<a class="coderef" href="${html}#${id}"></a>`,
+      `<a class="coderef" href="${html}#code-${id}"></a>`,
     );
   });
 
@@ -80,7 +80,7 @@ export const docrefRegisterHelper = () => {
     }
     const { html } = toc;
     return new Handlebars.SafeString(
-      `<a class="tableref" href="${html}#${id}"></a>`,
+      `<a class="tableref" href="${html}#table-${id}"></a>`,
     );
   });
 };
