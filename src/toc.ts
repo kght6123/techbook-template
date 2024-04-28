@@ -68,7 +68,6 @@ export const docsHeadingList = await Promise.all(
           return undefined;
         })
         .filter((caption) => caption?.title);
-      console.log(captions);
 
       // NG: HTMLノードからキャプションを取得するパターン
       // const processedRoot = await processorRehype.run(root);
