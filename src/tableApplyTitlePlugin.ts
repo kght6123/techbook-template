@@ -3,6 +3,7 @@ import { Element, Text } from "hast";
 import { Plugin } from "unified";
 import { Node, Parent } from "unist";
 import visit from "unist-util-visit";
+import { isTitleForComment, parseTitleForComment } from "./utility";
 
 const tableApplyTitlePlugin: Plugin = () => {
   return (tree: Node) => {
@@ -19,13 +20,13 @@ const tableApplyTitlePlugin: Plugin = () => {
           node.type === "raw" &&
           "value" in node &&
           typeof node.value === "string" &&
-          node.value.includes("<!-- title:") &&
+          isTitleForComment(node.value) &&
           // 親のチェック
           index !== null &&
           parent &&
           parent.children.length > index + 2
         ) {
-          const titleText = node.value.replace(/<!-- title: (.*?) -->/, "$1");
+          const titleText = parseTitleForComment(node.value);
           if (titleText) {
             const nextNode = parent.children[index + 2] as Element;
             if (nextNode && nextNode.tagName === "table") {

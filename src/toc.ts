@@ -2,54 +2,100 @@ import fs from "fs";
 import path from "path";
 import _ from "lodash";
 import { Heading, Text } from "mdast";
-import rehypeSlug from "rehype-slug";
-import rehypeStringify from "rehype-stringify";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import { unified } from "unified";
-import { distDir, docsDir, tocDistPath } from "./constants";
+import { distDir, docsDir, processorRehype, tocDistPath } from "./constants";
 
 import { slug } from "github-slugger";
+import {
+  isTitleForComment,
+  parseTitleForCodeMeta,
+  parseTitleForComment,
+} from "./utility";
 
 // 目次の作成にも対応する（HTMLとvivliostyle.config.js）、目次の順序はファイル名順にする。
-const processor = unified()
-  .use(remarkParse)
-  .use(remarkRehype)
-  .use(rehypeSlug)
-  .use(rehypeStringify);
 
 // 目次を作るリストを作る
-export const docsHeadingList = fs
-  .readdirSync(docsDir, { withFileTypes: true })
-  .filter((dirent) => dirent.isFile())
-  .map((dirent) => {
-    const src = path.join(docsDir, dirent.name);
-    const srcParsed = path.parse(src);
-    const html = `${srcParsed.name}.dist.html`;
-    const dist = path.join(distDir, `${srcParsed.name}.dist.html`);
-    return { src, html, dist, fileName: srcParsed.name };
-  })
-  .filter(
-    ({ fileName }) => fileName !== "_introduction" && fileName !== "_finally",
-  )
-  .map(({ src, html, dist, fileName }) => {
-    const input = fs.readFileSync(src, "utf-8");
-    const headings = processor
-      .parse(input)
-      .children.filter(
-        (node) =>
-          node.type === "heading" &&
-          // frontmatterをh2として扱わない
-          !(node.depth === 2 && node.position?.start.line <= 2),
-      )
-      .map((node) => {
-        const heading = node as Heading & { id: string; text: string };
-        heading.text = (heading.children?.[0] as Text)?.value;
-        heading.id = slug(heading.text, false);
-        return heading;
-      });
-    return { src, html, headings, dist, fileName };
-  });
+export const docsHeadingList = await Promise.all(
+  fs
+    .readdirSync(docsDir, { withFileTypes: true })
+    .filter((dirent) => dirent.isFile())
+    .map((dirent) => {
+      const src = path.join(docsDir, dirent.name);
+      const srcParsed = path.parse(src);
+      const html = `${srcParsed.name}.dist.html`;
+      const dist = path.join(distDir, `${srcParsed.name}.dist.html`);
+      return { src, html, dist, fileName: srcParsed.name };
+    })
+    .filter(
+      ({ fileName }) => fileName !== "_introduction" && fileName !== "_finally",
+    )
+    .map(async ({ src, html, dist, fileName }) => {
+      const input = fs.readFileSync(src, "utf-8");
+      const root = processorRehype.parse(input);
+      const headings = root.children
+        .filter(
+          (node) =>
+            node.type === "heading" &&
+            // frontmatterをh2として扱わない
+            !(node.depth === 2 && node.position?.start.line <= 2),
+        )
+        .map((node) => {
+          const heading = node as Heading & { id: string; text: string };
+          heading.text = (heading.children?.[0] as Text)?.value;
+          heading.id = slug(heading.text, false);
+          return heading;
+        });
+
+      // OK: Markdownノードからキャプションを取得するパターン
+      const captions = root.children
+        .map((node) => {
+          if (node.type === "code" && node.meta) {
+            const title = parseTitleForCodeMeta(node.meta);
+            return { title, id: slug(title, false) };
+          }
+          if (node.type === "html" && isTitleForComment(node.value)) {
+            // TODO: Markdownノードからコメントを取得できる、他もRehypeではなくRemarkでコメントを処理するプラグインでもいいかも
+            const title = parseTitleForComment(node.value);
+            return { title, id: slug(title, false) };
+          }
+          if (
+            node.type === "paragraph" &&
+            node.children?.some((node) => node.type === "image")
+          ) {
+            const image = node.children?.find((node) => node.type === "image");
+            const alt = image?.alt?.split(",")?.[0];
+            return { title: alt, id: slug(alt, false) };
+          }
+          return undefined;
+        })
+        .filter((caption) => caption?.title);
+      console.log(captions);
+
+      // NG: HTMLノードからキャプションを取得するパターン
+      // const processedRoot = await processorRehype.run(root);
+      // const captions = processedRoot.children
+      //   .filter(
+      //     (node) =>
+      //       node.type === "element" &&
+      //       (node.tagName === "figure" ||
+      //         node.tagName === "table" ||
+      //         (node.tagName === "div" &&
+      //           node.children?.some(
+      //             (child) =>
+      //               child.type === "element" && child.tagName === "pre",
+      //           ))),
+      //   )
+      //   .map((node) => {
+      //     // const heading = node as Heading & { id: string; text: string };
+      //     // heading.text = (heading.children?.[0] as Text)?.value;
+      //     // heading.id = slug(heading.text, false);
+      //     // return heading;
+      //     console.log(node);
+      //     return node;
+      //   });
+
+      return { src, html, headings, dist, fileName, captions };
+    }),
+);
 
 export const rightPillarChapterList: { html: string; chapterCount: number }[] =
   [

@@ -74,7 +74,7 @@ export const coverDistPaths = [
 ];
 
 // unifiedのプロセッサを作成する
-export const processor = unified()
+export const processorRehype = unified()
   .use(remarkParse)
   // DOCS: https://github.com/remarkjs/remark-frontmatter
   .use(remarkFrontmatter, { type: "yaml", marker: "-" })
@@ -117,5 +117,8 @@ export const processor = unified()
       transformerMetaHighlight(),
       transformerMetaWordHighlight(),
     ],
-  })
-  .use(rehypeStringify, { allowDangerousHtml: true });
+  });
+
+export const processor = processorRehype.use(rehypeStringify, {
+  allowDangerousHtml: true,
+});

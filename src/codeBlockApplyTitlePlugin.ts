@@ -4,6 +4,11 @@ import { Node, Parent } from "unist";
 import visit from "unist-util-visit";
 
 import { slug } from "github-slugger";
+import {
+  isTitleForComment,
+  parseTitleForCodeMeta,
+  parseTitleForComment,
+} from "./utility";
 
 const codeBlockApplyTitlePlugin: Plugin = () => {
   return (tree: Node) => {
@@ -21,13 +26,13 @@ const codeBlockApplyTitlePlugin: Plugin = () => {
           node.type === "raw" &&
           "value" in node &&
           typeof node.value === "string" &&
-          node.value.includes("<!-- title:") &&
+          isTitleForComment(node.value) &&
           // 親のチェック
           index !== null &&
           parent &&
           parent.children.length > index + 2
         ) {
-          const titleText = node.value.replace(/<!-- title: (.*?) -->/, "$1");
+          const titleText = parseTitleForComment(node.value);
           if (titleText) {
             const nextNode = parent.children[index + 2] as Element;
             if (nextNode && nextNode.tagName === "pre") {
@@ -74,10 +79,7 @@ const codeBlockApplyTitlePlugin: Plugin = () => {
           index !== null &&
           parent
         ) {
-          const titleText = node.children[0].data.meta
-            .split(" ")
-            .find((value) => value.startsWith("title:"))
-            ?.replace("title:", "");
+          const titleText = parseTitleForCodeMeta(node.children[0].data.meta);
           if (titleText) {
             const titleElement: Element = {
               type: "element",
