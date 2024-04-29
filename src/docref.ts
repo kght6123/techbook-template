@@ -42,7 +42,7 @@ export const docrefRegisterHelper = () => {
 `);
   });
 
-  Handlebars.registerHelper("imageref", (filePathPrefix, id) => {
+  Handlebars.registerHelper("imageref", (filePathPrefix, titleOrId) => {
     const toc = docsHeadingList.find((toc) =>
       toc.html.startsWith(filePathPrefix),
     );
@@ -50,13 +50,23 @@ export const docrefRegisterHelper = () => {
       console.error(`imageref: ${filePathPrefix} が見つかりませんでした。`);
       return "";
     }
+    const caption = toc.captions.find(
+      ({ title, id }) =>
+        title.startsWith(titleOrId) || id.startsWith(titleOrId),
+    );
+    if (caption === undefined) {
+      console.error(
+        `imageref: ${filePathPrefix} に ${titleOrId} が見つかりませんでした。`,
+      );
+      return "";
+    }
     const { html } = toc;
     return new Handlebars.SafeString(
-      `<a class="imageref" href="${html}#image-${id}"></a>`,
+      `<a class="imageref" href="${html}#image-${caption.id}">${caption.title}</a>`,
     );
   });
 
-  Handlebars.registerHelper("coderef", (filePathPrefix, id) => {
+  Handlebars.registerHelper("coderef", (filePathPrefix, titleOrId) => {
     const toc = docsHeadingList.find((toc) =>
       toc.html.startsWith(filePathPrefix),
     );
@@ -64,13 +74,23 @@ export const docrefRegisterHelper = () => {
       console.error(`coderef: ${filePathPrefix} が見つかりませんでした。`);
       return "";
     }
+    const caption = toc.captions.find(
+      ({ title, id }) =>
+        title.startsWith(titleOrId) || id.startsWith(titleOrId),
+    );
+    if (caption === undefined) {
+      console.error(
+        `coderef: ${filePathPrefix} に ${titleOrId} が見つかりませんでした。`,
+      );
+      return "";
+    }
     const { html } = toc;
     return new Handlebars.SafeString(
-      `<a class="coderef" href="${html}#code-${id}"></a>`,
+      `<a class="coderef" href="${html}#code-${caption.id}">${caption.title}</a>`,
     );
   });
 
-  Handlebars.registerHelper("tableref", (filePathPrefix, id) => {
+  Handlebars.registerHelper("tableref", (filePathPrefix, titleOrId) => {
     const toc = docsHeadingList.find((toc) =>
       toc.html.startsWith(filePathPrefix),
     );
@@ -78,9 +98,19 @@ export const docrefRegisterHelper = () => {
       console.error(`tableref: ${filePathPrefix} が見つかりませんでした。`);
       return "";
     }
+    const caption = toc.captions.find(
+      ({ title, id }) =>
+        title.startsWith(titleOrId) || id.startsWith(titleOrId),
+    );
+    if (caption === undefined) {
+      console.error(
+        `tableref: ${filePathPrefix} に ${titleOrId} が見つかりませんでした。`,
+      );
+      return "";
+    }
     const { html } = toc;
     return new Handlebars.SafeString(
-      `<a class="tableref" href="${html}#table-${id}"></a>`,
+      `<a class="tableref" href="${html}#table-${caption.id}">${caption.title}</a>`,
     );
   });
 };
