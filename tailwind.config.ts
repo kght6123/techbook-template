@@ -57,10 +57,18 @@ export default {
     extend: {
       colors: {
         primary: {
-          500: 'var(--primary-color-500, theme("colors.gray.500"))',
-          400: 'var(--primary-color-400, theme("colors.gray.400"))',
-          200: 'var(--primary-color-200, theme("colors.gray.200"))',
-          50: 'var(--primary-color-50, theme("colors.gray.50"))',
+          800: 'var(--primary-color-800, theme("colors.slate.800"))',
+          500: 'var(--primary-color-500, theme("colors.slate.500"))',
+          400: 'var(--primary-color-400, theme("colors.slate.400"))',
+          200: 'var(--primary-color-200, theme("colors.slate.200"))',
+          50: 'var(--primary-color-50, theme("colors.slate.50"))',
+        },
+        secondary: {
+          800: 'var(--secondary-color-800, theme("colors.neutral.800"))',
+          500: 'var(--secondary-color-500, theme("colors.neutral.500"))',
+          400: 'var(--secondary-color-400, theme("colors.neutral.400"))',
+          200: 'var(--secondary-color-200, theme("colors.neutral.200"))',
+          50: 'var(--secondary-color-50, theme("colors.neutral.50"))',
         },
       },
     },

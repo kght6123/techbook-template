@@ -254,7 +254,7 @@ pie
   (repeat-chat-left '（Left連続メッセージ2）' 'balloon-indigo-200')
   (chat-left '（Leftメッセージ）' 'キャラ名L' 'balloon-indigo-200' 'chat-left-icon.png')
   (repeat-chat-left '（Left連続メッセージ1）' 'balloon-indigo-200')
-  (chat-right '（Rightメッセージ）' 'こうはい' 'balloon-fuchsia-200' 'chat-right-icon.png')
+  (chat-right '（Rightメッセージ）' 'キャラ名R' 'balloon-fuchsia-200' 'chat-right-icon.png')
   (repeat-chat-right '（Right連続メッセージ1）' 'balloon-fuchsia-200')
 }}
 

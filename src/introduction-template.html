@@ -6,10 +6,16 @@
     <meta name="viewport" content="width=device-width" />
     <style>
       :root {
+        {{#if data.matter.color.primary.[800]}}--primary-color-800: {{data.matter.color.primary.[800]}};{{/if}}
         {{#if data.matter.color.primary.[500]}}--primary-color-500: {{data.matter.color.primary.[500]}};{{/if}}
         {{#if data.matter.color.primary.[400]}}--primary-color-400: {{data.matter.color.primary.[400]}};{{/if}}
         {{#if data.matter.color.primary.[200]}}--primary-color-200: {{data.matter.color.primary.[200]}};{{/if}}
         {{#if data.matter.color.primary.[50]}}--primary-color-50: {{data.matter.color.primary.[50]}};{{/if}}
+        {{#if data.matter.color.secondary.[800]}}--secondary-color-800: {{data.matter.color.secondary.[800]}};{{/if}}
+        {{#if data.matter.color.secondary.[500]}}--secondary-color-500: {{data.matter.color.secondary.[500]}};{{/if}}
+        {{#if data.matter.color.secondary.[400]}}--secondary-color-400: {{data.matter.color.secondary.[400]}};{{/if}}
+        {{#if data.matter.color.secondary.[200]}}--secondary-color-200: {{data.matter.color.secondary.[200]}};{{/if}}
+        {{#if data.matter.color.secondary.[50]}}--secondary-color-50: {{data.matter.color.secondary.[50]}};{{/if}}
       }
       {{inlineStyle}}
     </style>
