@@ -12,6 +12,7 @@
  |
  */
 module.exports = {
+  injectChanges: false,
   proxy: {
     target: "localhost:3000",
     proxyReq: [
