@@ -455,6 +455,7 @@ a.tableref::after {
   footnote-display: block;
   counter-increment: footnote;
   background-color: #fff;
+  font-weight: normal;
 }
 .footnote::footnote-call {
   content: "[" counter(footnote) "]";
