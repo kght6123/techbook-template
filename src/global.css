@@ -224,11 +224,11 @@ ul.contains-task-list > li.task-list-item::before {
 }
 
 /* DOC: https://github.com/shikijs/shiki/blob/main/packages/transformers/test/fixtures/highlight/a.js.output.html */
-.shiki .highlighted { @apply bg-[rgba(0,119,255,0.2)]; }
+.shiki .highlighted { @apply bg-[rgba(0,119,255,0.1)]; }
 
 /* DOC: https://github.com/shikijs/shiki/blob/main/packages/transformers/test/fixtures/highlight-word/occurrence.js.output.html */
 .shiki .highlighted-word {
-  @apply py-[2px] bg-[rgba(0,119,255,0.2)];
+  @apply py-[2px] bg-[rgba(0,119,255,0.1)];
 }
 
 /* DOC: https://github.com/shikijs/shiki/blob/main/packages/transformers/test/fixtures/error-level/a.js.output.html */
@@ -492,9 +492,7 @@ a.tableref::after {
   }
 }
 .appendix {
-  @apply px-1 py-1;
-  background-color: var(--ichimatsu-1color, theme("colors.yellow.200"));
-  border-radius: 0.25rem;
+  @apply px-1 py-0.5 bg-primary-200 rounded mx-1;;
 }
 
 /* 1段組み用のスタイル */
