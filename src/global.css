@@ -204,7 +204,7 @@ ul.contains-task-list > li.task-list-item::before {
   counter-increment: shiki_line_number 0;
 }
 .shiki > code .line:not(:last-child)::before {
-  @apply w-4 mr-6 inline-block text-right text-gray-600;
+  @apply w-8 mr-6 inline-block text-right text-gray-600 text-xs;
   content: counter(shiki_line_number);
   counter-increment: shiki_line_number;
 }
