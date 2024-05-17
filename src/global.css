@@ -36,6 +36,7 @@
   }
   @top-left {
     content: env(pub-title);
+    width: 350px;
   }
   @top-right-corner {
     content: element(topRightCorner);
