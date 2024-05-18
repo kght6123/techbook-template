@@ -22,6 +22,7 @@ import { unified } from "unified";
 import { VFile } from "remark-rehype/lib";
 import { Node } from "unified/lib";
 import { matter } from "vfile-matter";
+import addLinkToQRCode from "./addLinkToQRCode";
 import codeBlockApplyTitlePlugin from "./codeBlockApplyTitlePlugin";
 import imageApplyAttributesFromTitlePlugin from "./imageApplyAttributesFromTitlePlugin";
 import imageAttributesToTitlePlugin from "./imageAttributesToTitlePlugin";
@@ -117,7 +118,8 @@ export const processorRehype = unified()
       transformerMetaHighlight(),
       transformerMetaWordHighlight(),
     ],
-  });
+  })
+  .use(addLinkToQRCode);
 
 export const processor = processorRehype.use(rehypeStringify, {
   allowDangerousHtml: true,
