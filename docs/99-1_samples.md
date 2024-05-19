@@ -276,6 +276,6 @@ pie
 
 Page Breakは改ページです。
 
-{{page-break}}
+\{{page-break}}
 
 ここから必ず次のページになります。`page-break`以外にも`left-break`、`right-break`があります。
