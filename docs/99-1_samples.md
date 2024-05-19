@@ -76,6 +76,12 @@ Footnote [^1]
 
 [^1]: Footnote Comment
 
+## QRコードの埋め込み
+
+URLを記述すると、そのQRコードを埋め込むことができます。
+
+<!-- qrcode: https://example.com/ -->
+
 ## Strikethrough
 
 ~取り消し線~ or ~~取り消し線~~
