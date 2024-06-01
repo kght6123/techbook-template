@@ -77,6 +77,12 @@ TODO:
 - VS Codeをインストール済み（[インストール方法](https://code.visualstudio.com/download)）
 - 使用フォント（[M PLUS Rounded 1c](https://fonts.google.com/specimen/M+PLUS+Rounded+1c)）
 
+Appleシリコン版Macや、Intel版Macの場で動作確認しています。スペック的に余裕がない`MacBook (Retina, 12-inch, 2017)`などの低スペックなMacBookでは動作が遅い場合があります。（最近話題のCeleron N100シリーズのほぼ半分のベンチマークスコアなので当然な気もします。）
+
+なるべくスペックに余裕があるマシンでの実行をオススメします。
+
+また、Windows・Linuxに固有の機能はないので動作するとは思いますが動作確認はできていません、もし動かない場合はIssueを立てていただければ対応いたします。
+
 ## Install and Usage
 
 プロジェクトのインストール方法と使い方を説明します。
