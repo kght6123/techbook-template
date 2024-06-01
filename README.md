@@ -28,10 +28,6 @@ techbook-template
 ├── package-lock.json
 ├── package.json
 ├── postcss.config.cjs
-├── samples <-- サンプル集
-│   ├── 99-1_nodes.md
-│   ├── 99-2_custom_tags.md
-│   └── 99-3_nidan.md
 ├── dist <-- 出力ディレクトリ
 ├── src
 │   ├── appendix-template.html <-- Appendixのテンプレート
