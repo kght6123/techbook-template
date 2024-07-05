@@ -130,7 +130,6 @@ brタグで改行ができます。`,
 
 ```sh
 npm i # 依存関係をインストール
-npx playwright-core install --with-deps chromium # Chromiumブラウザをインストール（Mermaid向け）
 npm run dev # 開発モードでプレビュー（Ctrl＋Cで停止）
 npm run build # 本番モードでビルド（PDF出力）
 ```
