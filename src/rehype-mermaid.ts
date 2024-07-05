@@ -25,11 +25,6 @@ export interface RenderResult {
    */
   description?: string
 
-  // /**
-  //  * The height of the resulting SVG.
-  //  */
-  // height: number
-
   /**
    * The DOM id of the SVG node.
    */
@@ -40,20 +35,10 @@ export interface RenderResult {
    */
   screenshot?: Buffer
 
-  // /**
-  //  * The diagram rendered as an SVG.
-  //  */
-  // svg: string
-
   /**
    * The title of the rendered diagram.
    */
   title?: string
-
-  // /**
-  //  * The width of the resulting SVG.
-  //  */
-  // width: number
 }
 
 let browser: Browser = undefined
