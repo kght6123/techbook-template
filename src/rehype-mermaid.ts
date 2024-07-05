@@ -142,11 +142,9 @@ function toImageElement(
     tagName: 'img',
     properties: {
       alt: imgResult.description || '',
-      // height: imgResult.height,
       id: imgResult.id,
       src: toDataURI(imgResult),
       title: imgResult.title,
-      // width: imgResult.width
     },
     children: []
   }
