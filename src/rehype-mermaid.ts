@@ -1,9 +1,9 @@
-import { type Element, type ElementContent, type Root } from 'hast'
+import type { Element, ElementContent, Root } from 'hast'
 import { toText } from 'hast-util-to-text'
 import { parse } from 'space-separated-tokens'
-import { type Plugin } from 'unified'
+import type { Plugin } from 'unified'
 import visitParents from 'unist-util-visit-parents'
-import { type VFile } from 'vfile'
+import type { VFile } from 'vfile'
 import { ParseMDDOptions, renderMermaid } from "@mermaid-js/mermaid-cli"
 import puppeteer, { PuppeteerLaunchOptions, Browser } from "puppeteer";
 
@@ -25,11 +25,6 @@ export interface RenderResult {
    */
   description?: string
 
-  // /**
-  //  * The height of the resulting SVG.
-  //  */
-  // height: number
-
   /**
    * The DOM id of the SVG node.
    */
@@ -40,20 +35,10 @@ export interface RenderResult {
    */
   screenshot?: Buffer
 
-  // /**
-  //  * The diagram rendered as an SVG.
-  //  */
-  // svg: string
-
   /**
    * The title of the rendered diagram.
    */
   title?: string
-
-  // /**
-  //  * The width of the resulting SVG.
-  //  */
-  // width: number
 }
 
 let browser: Browser = undefined
@@ -157,11 +142,9 @@ function toImageElement(
     tagName: 'img',
     properties: {
       alt: imgResult.description || '',
-      // height: imgResult.height,
       id: imgResult.id,
       src: toDataURI(imgResult),
       title: imgResult.title,
-      // width: imgResult.width
     },
     children: []
   }
