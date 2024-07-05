@@ -26,7 +26,7 @@ export default function generateVivlioStyleConfig() {
     title,
     author,
     language: "ja",
-    size: "JIS-B5",
+    size: "JIS-B6",
     entryContext: ".",
     entry: [
       frontCoverDistPath,
