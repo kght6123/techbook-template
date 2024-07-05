@@ -1,9 +1,9 @@
-import { type Element, type ElementContent, type Root } from 'hast'
+import type { Element, ElementContent, Root } from 'hast'
 import { toText } from 'hast-util-to-text'
 import { parse } from 'space-separated-tokens'
-import { type Plugin } from 'unified'
+import type { Plugin } from 'unified'
 import visitParents from 'unist-util-visit-parents'
-import { type VFile } from 'vfile'
+import type { VFile } from 'vfile'
 import { ParseMDDOptions, renderMermaid } from "@mermaid-js/mermaid-cli"
 import puppeteer, { PuppeteerLaunchOptions, Browser } from "puppeteer";
 
