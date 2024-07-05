@@ -10,7 +10,7 @@ import {
   transformerNotationWordHighlight,
   transformerRenderWhitespace,
 } from "@shikijs/transformers";
-import rehypeMermaid from "rehype-mermaid";
+import rehypeMermaid from "./rehype-mermaid";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import remarkFrontmatter from "remark-frontmatter";
@@ -92,10 +92,7 @@ export const processorRehype = unified()
   .use(rehypeSlug)
   // DOCS: https://github.com/remcohaszing/rehype-mermaid
   .use(rehypeMermaid, {
-    // The default strategy is 'inline-svg'
     strategy: "img-png",
-    // strategy: 'img-svg'
-    // strategy: 'inline-svg'
     // strategy: 'pre-mermaid'
   })
   .use(codeBlockApplyTitlePlugin)
