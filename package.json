@@ -20,6 +20,8 @@
     "@shikijs/rehype": "^1.1.7",
     "@shikijs/transformers": "^1.1.7",
     "@vivliostyle/cli": "^8.8.0",
+    "commander": "^12.1.0",
+    "concurrently": "^8.2.2",
     "fs": "^0.0.1-security",
     "h3": "^1.11.1",
     "handlebars": "^4.7.8",

@@ -239,7 +239,7 @@ const rehypeMermaid: Plugin<[RehypeMermaidOptions?], Root> = (options) => {
   const outputFormat = "png"
   const parseMMDOptions: ParseMDDOptions = {}
   const puppeteerConfig: PuppeteerLaunchOptions = ({
-    headless: "new"
+    headless: "new",
   })
   const renderDiagrams = (() => (diagrams: string[], renderOptions: RehypeMermaidOptions | undefined): Promise<PromiseSettledResult<RenderResult>[]> => {
     return Promise.allSettled(
@@ -355,10 +355,21 @@ const rehypeMermaid: Plugin<[RehypeMermaidOptions?], Root> = (options) => {
           parent.children.splice(nodeIndex, 1)
         }
       }
-    }).finally(() => {
+    }).finally(async () => {
+      console.log('finally')
       if (browser !== undefined) {
-        browser.close()
+        const pages = await browser.pages();
+        for (let i = 0; i < pages.length; i++) {
+          await pages[i].close();
+        }
+        const childProcess = browser.process()
+        if (childProcess) {
+          childProcess.kill(9)
+        }
+        await browser.close();
+
         browser = undefined
+        console.log('browser closed')
       }
     })
   }
