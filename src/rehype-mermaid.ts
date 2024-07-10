@@ -239,7 +239,7 @@ const rehypeMermaid: Plugin<[RehypeMermaidOptions?], Root> = (options) => {
   const outputFormat = "png"
   const parseMMDOptions: ParseMDDOptions = {}
   const puppeteerConfig: PuppeteerLaunchOptions = ({
-    headless: "new"
+    headless: "new",
   })
   const renderDiagrams = (() => (diagrams: string[], renderOptions: RehypeMermaidOptions | undefined): Promise<PromiseSettledResult<RenderResult>[]> => {
     return Promise.allSettled(
@@ -264,7 +264,7 @@ const rehypeMermaid: Plugin<[RehypeMermaidOptions?], Root> = (options) => {
       })
     )
   })();
-  return (ast, file) => {
+  return async (ast, file) => {
     const instances: CodeInstance[] = []
 
     visitParents(ast, 'element', (node: Element, ancestors) => {
@@ -331,7 +331,7 @@ const rehypeMermaid: Plugin<[RehypeMermaidOptions?], Root> = (options) => {
       )
     ]
 
-    return Promise.all(promises).then(([lightResults]) => {
+    return await Promise.all(promises).then(([lightResults]) => {
       for (const [index, instance] of instances.entries()) {
         const lightResult = lightResults[index]
         // biome-ignore lint/suspicious/noConfusingVoidType: <explanation>
@@ -355,10 +355,19 @@ const rehypeMermaid: Plugin<[RehypeMermaidOptions?], Root> = (options) => {
           parent.children.splice(nodeIndex, 1)
         }
       }
-    }).finally(() => {
+    }).finally(async () => {
+      console.log('finally')
       if (browser !== undefined) {
-        browser.close()
+        const pages = await browser.pages();
+        for (let i = 0; i < pages.length; i++) {
+          await pages[i].close();
+        }
+        await browser.close();
         browser = undefined
+        setTimeout(() => {
+          console.log('force exit...')
+          process.exit(0);
+        }, 10 * 1000);
       }
     })
   }

@@ -209,6 +209,12 @@ MITライセンスの下で公開されています。詳細については LICE
 
 [docs/99-1_samples.md](./docs/99-1_samples.md)を参照してください。
 
+## Print
+
+プリント出力のための設定や注意事項を記載します。
+
+- 後日、KDPへの対応を予定しています。
+
 ## Note
 
 このプロジェクトに関する追加の注意事項や補足情報を記載します。
@@ -249,3 +255,4 @@ npx browser-sync start --proxy 'localhost:3000' --files="dist/lockfile" --startP
 ## ChangeLog
 
 - v0.1 4/26 プロジェクト作成
+- v0.2 7/10 Windowsで起動しない問題を修正 #7、Mermaid生成の内部処理を公式のものに変更
