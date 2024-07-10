@@ -5,7 +5,8 @@
 /* MEMO: Topに@importで書く必要がある https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports */
 
 @page {
-  size: 105mm 173mm;
+  size: jis-b5;
+  /* size: 105mm 173mm; */
   /* margin: 10% !important; */
   /* トンボを追加 */
   /* marks: crop cross; */
