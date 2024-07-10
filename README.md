@@ -255,3 +255,4 @@ npx browser-sync start --proxy 'localhost:3000' --files="dist/lockfile" --startP
 ## ChangeLog
 
 - v0.1 4/26 プロジェクト作成
+- v0.2 7/10 Windowsで起動しない問題を修正 #7、Mermaid生成の内部処理を公式のものに変更
