@@ -10,7 +10,7 @@ import {
   transformerNotationWordHighlight,
   transformerRenderWhitespace,
 } from "@shikijs/transformers";
-import rehypeMermaid from "./rehype-mermaid";
+import rehypeMermaid from "rehype-mermaid";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import remarkFrontmatter from "remark-frontmatter";
