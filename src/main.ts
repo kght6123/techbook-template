@@ -8,9 +8,9 @@ import { chatRegisterHelper } from "./chat";
 import { colophonCompile } from "./colophon";
 import {
   chapterTemplateHtmlPath,
+  simpleChapterTemplateHtmlPath,
   handlebarCompileOptions,
   lockFileDistPath,
-  lockFileSrcPath,
   processor,
 } from "./constants";
 import { coverCompile } from "./cover";
@@ -22,6 +22,7 @@ import { profileCompile } from "./profile";
 import "./split";
 import "./switch";
 import { docsHeadingList, rightPillarChapterList, tocCompile } from "./toc";
+import config from "../techbook.config";
 
 // Handlebarsにヘルパーを登録する
 chatRegisterHelper();
@@ -34,7 +35,7 @@ pageBreakRegisterHelper();
 
 // HTMLのテンプレートをHandlebarsで読み込む
 const chapterTemplateHtml = Handlebars.compile(
-  fs.readFileSync(chapterTemplateHtmlPath).toString(),
+  fs.readFileSync(config.size === "105mm 173mm" ? simpleChapterTemplateHtmlPath : chapterTemplateHtmlPath).toString(),
   handlebarCompileOptions,
 );
 

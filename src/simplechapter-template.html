@@ -1,0 +1,53 @@
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    {{{globalStyle}}}
+    <meta name="viewport" content="width=device-width" />
+    <style>
+      :root {
+        {{#if data.matter.color.primary.[800]}}--primary-color-800: {{data.matter.color.primary.[800]}};{{/if}}
+        {{#if data.matter.color.primary.[500]}}--primary-color-500: {{data.matter.color.primary.[500]}};{{/if}}
+        {{#if data.matter.color.primary.[400]}}--primary-color-400: {{data.matter.color.primary.[400]}};{{/if}}
+        {{#if data.matter.color.primary.[200]}}--primary-color-200: {{data.matter.color.primary.[200]}};{{/if}}
+        {{#if data.matter.color.primary.[50]}}--primary-color-50: {{data.matter.color.primary.[50]}};{{/if}}
+        {{#if data.matter.color.secondary.[800]}}--secondary-color-800: {{data.matter.color.secondary.[800]}};{{/if}}
+        {{#if data.matter.color.secondary.[500]}}--secondary-color-500: {{data.matter.color.secondary.[500]}};{{/if}}
+        {{#if data.matter.color.secondary.[400]}}--secondary-color-400: {{data.matter.color.secondary.[400]}};{{/if}}
+        {{#if data.matter.color.secondary.[200]}}--secondary-color-200: {{data.matter.color.secondary.[200]}};{{/if}}
+        {{#if data.matter.color.secondary.[50]}}--secondary-color-50: {{data.matter.color.secondary.[50]}};{{/if}}
+      }
+      {{inlineStyle}}
+    </style>
+  </head>
+  <body id="{{slug}}" class="chapter">
+    <div class="topCenter"></div>
+    <div class="topRight"></div>
+    <div class="topRightCorner"></div>
+    <div class="topLeftCorner"></div>
+    <div class="leftPageLeftTop"></div>
+    <div class="leftPageLeftMiddle"></div>
+    <div class="leftPageLeftBottom"></div>
+    <div class="rightPageRightTop"></div>
+    <div class="rightPageRightMiddle"></div>
+    <div class="rightPageRightBottom"></div>
+    <div class="bottomRight"></div>
+    <div class="bottomRightCorner"></div>
+    <div class="bottomLeft"></div>
+    <div class="bottomLeftCorner"></div>
+    <div id="chaptercover" class="chapterCover flex flex-col justify-center">
+      <div class="">
+        <a class="chapterCoverTitle text-black font-extrabold text-4xl no-underline" href="#{{slug}}"><br/>{{title}}</a>
+      </div>
+      <div class="">
+        <p class="text-xl">{{data.matter.description}}</p>
+      </div>
+    </div>
+    <div class="break-before-page"></div>
+    <!-- INFO: https://github.com/vivliostyle/vivliostyle.js/issues/542 -->
+    <!-- {{#if data.matter.columns}}<div class="colmun-count-2">{{/if}} -->
+    {{{body}}}
+    <!-- {{#if data.matter.columns}}</div>{{/if}} -->
+    <div class="break-bf-left"></div>
+  </body>
+</html>

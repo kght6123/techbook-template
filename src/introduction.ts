@@ -1,6 +1,6 @@
 import fs from "fs";
 import Handlebars from "handlebars";
-import miraiBookConfig from "../techbook.config";
+import config from "../techbook.config";
 import {
   finallyDistPath,
   finallyDocPath,
@@ -8,13 +8,14 @@ import {
   introductionDistPath,
   introductionDocPath,
   introductionTemplateHtmlPath,
+  simpleIntroductionTemplateHtmlPath,
   processor,
 } from "./constants";
 import { rightPillarChapterList } from "./toc";
 
 // HTMLのテンプレートをHandlebarsで読み込む
 const introductionTemplateHtml = Handlebars.compile(
-  fs.readFileSync(introductionTemplateHtmlPath).toString(),
+  fs.readFileSync(config.size === "105mm 173mm" ? simpleIntroductionTemplateHtmlPath : introductionTemplateHtmlPath).toString(),
   handlebarCompileOptions,
 );
 

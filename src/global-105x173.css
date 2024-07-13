@@ -2,19 +2,14 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* MEMO: Topに@importで書く必要がある https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports */
-
 @page {
-  size: jis-b5;
-  /* margin: 10% !important; */
+  size: 105mm 173mm;
   /* トンボを追加 */
   /* marks: crop cross; */
   /* トンボの塗り足しを3mmに設定 */
   /* bleed: 3mm; */
   margin-top: 25mm;
   margin-bottom: 33mm;
-  /* not footnote counter reset */
-  /* counter-reset: footnote; */
   @bottom-center {
     content: counter(page);
   }
@@ -144,6 +139,9 @@
     content: none;
   }
 }
+.coverText {
+  @apply h-[calc(173mm*0.8)];
+}
 
 :root {
   @apply font-["Rounded_Mgen+_2p","Rounded_Mplus_1c","PlemolJP"] [line-height:1.75] text-[10px];
@@ -262,21 +260,27 @@ ul.contains-task-list > li.task-list-item::before {
   position: running(bottomLeftCorner);
 }
 .leftPageLeftTop {
+  @apply hidden;
   position: running(leftPageLeftTop);
 }
 .leftPageLeftMiddle {
+  @apply hidden;
   position: running(leftPageLeftMiddle);
 }
 .leftPageLeftBottom {
+  @apply hidden;
   position: running(leftPageLeftBottom);
 }
 .rightPageRightTop {
+  @apply hidden;
   position: running(rightPageRightTop);
 }
 .rightPageRightMiddle {
+  @apply hidden;
   position: running(rightPageRightMiddle);
 }
 .rightPageRightBottom {
+  @apply hidden;
   position: running(rightPageRightBottom);
 }
 
@@ -664,6 +668,9 @@ img[id^="mermaid-"], img[src^="https://www.plantuml.com/plantuml/png/"] {
 }
 
 /* チャプターカバー */
+.chapterCover {
+  @apply h-[calc(173mm*0.8)];
+}
 a.chapterCoverTitle::before {
   content: "Chapter" target-counter(attr(href), chapter) " ";
 }

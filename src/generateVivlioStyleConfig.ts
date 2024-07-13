@@ -16,7 +16,7 @@ import {
 import { docsHeadingList } from "./toc";
 
 export default function generateVivlioStyleConfig() {
-  const { title, author } = miraiBookConfig;
+  const { title, author, size } = miraiBookConfig;
   // MEMO: build（PDF生成）用にvivliostyle.config.cjsを生成する
   const docsEntryList = docsHeadingList.map(({ headings, dist }) => ({
     path: dist,
@@ -26,8 +26,7 @@ export default function generateVivlioStyleConfig() {
     title,
     author,
     language: "ja",
-    size: "JIS-B5",
-    // size: "105mm 173mm",
+    size: size,
     entryContext: ".",
     entry: [
       frontCoverDistPath,
