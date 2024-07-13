@@ -116,6 +116,9 @@
   background-image: var(--cover-url);
   background-size: cover;
   background-repeat: no-repeat;
+  @top-left {
+    content: none;
+  }
   @top-left-corner {
     content: none;
   }
@@ -143,6 +146,9 @@
   @bottom-right-corner {
     content: none;
   }
+}
+.coverText {
+  @apply h-[calc(257mm*0.8)];
 }
 
 :root {

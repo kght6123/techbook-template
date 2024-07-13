@@ -111,6 +111,9 @@
   background-image: var(--cover-url);
   background-size: cover;
   background-repeat: no-repeat;
+  @top-left {
+    content: none;
+  }
   @top-left-corner {
     content: none;
   }

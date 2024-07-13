@@ -15,19 +15,19 @@
     {{#unless coverImage}}
     {{#switch kind}}
       {{#case "start"}}
-      <div id="cover" class="coverText flex flex-col justify-around items-center content-center">
+      <div id="cover" class="cover coverText flex flex-col justify-around items-center content-center">
         <div class="text-black font-extrabold text-6xl">{{title}}</div>
         <div class="text-black font-extrabold text-xl">{{publisher}} 編 著</div>
         <div class="text-black font-extrabold text-md">{{lastEdition.datetimeView}} {{lastEdition.version}} {{lastEdition.name}}</div>
       </div>
       {{/case}}
       {{#case "front"}}
-      <div id="cover" class="coverText flex flex-col justify-around items-center content-center">
+      <div id="cover" class="cover coverText flex flex-col justify-around items-center content-center">
         <div class="text-black font-extrabold text-6xl">{{title}}</div>
       </div>
       {{/case}}
       {{#case "back"}}
-      <div id="cover" class="coverText flex flex-col justify-around items-center content-center">
+      <div id="cover" class="cover coverText flex flex-col justify-around items-center content-center">
         <div class="text-black font-extrabold text-xl">{{publisher}}</div>
         <div class="text-black font-extrabold text-xl">{{author}}</div>
       </div>
