@@ -1,5 +1,5 @@
 const config: MiraiBookConfig = {
-  size: "JIS-B5",
+  size: "105mm 173mm",
   title: "(本のタイトル)",
   author: "(著者名)",
   publisher: "(サークル名)",

@@ -39,7 +39,7 @@ program.command('build')
     const { result } = concurrently(
       [
         { command: "npx --yes vite-node src/main.ts", name: "main" },
-        { command: "npx --yes tailwindcss@latest -i ./src/global.css -o ./dist/global.css --no-autoprefixer --postcss ./postcss.config.cjs", name: "tailwind" },
+        { command: `npx --yes tailwindcss@latest -i ./src/${cssSrcFileName} -o ./dist/global.css --no-autoprefixer --postcss ./postcss.config.cjs`, name: "tailwind" },
         { command: "npx --yes @vivliostyle/cli build --style ./dist/global.css", name: "vivliostyle" },
       ],
       {
