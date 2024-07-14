@@ -2,19 +2,14 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* MEMO: Topに@importで書く必要がある https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports */
-
 @page {
-  size: jis-b5;
-  /* margin: 10% !important; */
+  size: 105mm 173mm;
   /* トンボを追加 */
   /* marks: crop cross; */
   /* トンボの塗り足しを3mmに設定 */
   /* bleed: 3mm; */
   margin-top: 25mm;
   margin-bottom: 33mm;
-  /* not footnote counter reset */
-  /* counter-reset: footnote; */
   @bottom-center {
     content: counter(page);
   }
@@ -29,7 +24,7 @@
 @page :left {
   /* 左ページの右余白を広げる */
   /* 上 | 右 | 下 | 左 */
-  margin: 10% 8% 10% 12%;
+  margin: 9% 10% 9% 8%;
 
   @top-left-corner {
     content: element(topLeftCorner);
@@ -44,7 +39,7 @@
   @top-right {
     content: element(topRight);
   }
-  @left-top {
+  /* @left-top {
     content: element(leftPageLeftTop);
   }
   @left-middle {
@@ -52,7 +47,7 @@
   }
   @left-bottom {
     content: element(leftPageLeftBottom);
-  }
+  } */
   @bottom-left-corner {
     content: element(bottomLeftCorner);
   }
@@ -70,7 +65,7 @@
 @page :right {
   /* 右ページの左余白を広げる */
   /* 上 | 右 | 下 | 左 */
-  margin: 10% 12% 10% 8%;
+  margin: 9% 8% 9% 10%;
 
   @top-right-corner {
     content: element(topLeftCorner);
@@ -84,7 +79,7 @@
   @top-left {
     content: element(topRight);
   }
-  @right-top {
+  /* @right-top {
     content: element(rightPageRightTop);
   }
   @right-middle {
@@ -92,7 +87,7 @@
   }
   @right-bottom {
     content: element(rightPageRightBottom);
-  }
+  } */
   @bottom-left-corner {
     content: element(bottomRightCorner);
   }
@@ -148,7 +143,7 @@
   }
 }
 .coverText {
-  @apply h-[calc(257mm*0.8)];
+  @apply h-[calc(173mm*0.8)];
 }
 
 :root {
@@ -267,24 +262,30 @@ ul.contains-task-list > li.task-list-item::before {
 .bottomLeftCorner {
   position: running(bottomLeftCorner);
 }
-.leftPageLeftTop {
+/* .leftPageLeftTop {
+  @apply hidden;
   position: running(leftPageLeftTop);
 }
 .leftPageLeftMiddle {
+  @apply hidden;
   position: running(leftPageLeftMiddle);
 }
 .leftPageLeftBottom {
+  @apply hidden;
   position: running(leftPageLeftBottom);
 }
 .rightPageRightTop {
+  @apply hidden;
   position: running(rightPageRightTop);
 }
 .rightPageRightMiddle {
+  @apply hidden;
   position: running(rightPageRightMiddle);
 }
 .rightPageRightBottom {
+  @apply hidden;
   position: running(rightPageRightBottom);
-}
+} */
 
 /* 見出しフォントサイズの調整 */
 @media print {
@@ -670,6 +671,9 @@ img[id^="mermaid-"], img[src^="https://www.plantuml.com/plantuml/png/"] {
 }
 
 /* チャプターカバー */
+.chapterCover {
+  @apply h-[calc(173mm*0.8)];
+}
 a.chapterCoverTitle::before {
   content: "Chapter" target-counter(attr(href), chapter) " ";
 }

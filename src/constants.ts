@@ -41,6 +41,7 @@ export const lockFileSrcPath = "src/lockfile";
 export const lockFileDistPath = "dist/lockfile";
 
 export const chapterTemplateHtmlPath = "src/chapter-template.html";
+export const simpleChapterTemplateHtmlPath = "src/simplechapter-template.html";
 
 export const appendixTitle = "Appendix";
 export const appendixDistPath = "dist/appendix.dist.html";
@@ -59,6 +60,7 @@ export const finallyDocPath = "docs/_finally.md";
 export const introductionDistPath = "dist/_introduction.dist.html";
 export const finallyDistPath = "dist/_finally.dist.html";
 export const introductionTemplateHtmlPath = "src/introduction-template.html";
+export const simpleIntroductionTemplateHtmlPath = "src/simpleintroduction-template.html";
 
 export const tocDistPath = "dist/toc.dist.html";
 
@@ -67,12 +69,6 @@ export const frontCoverDistPath = "dist/front-cover.dist.html";
 export const backCoverDistPath = "dist/back-cover.dist.html";
 export const startCoverDistPath = "dist/start-cover.dist.html";
 export const endCoverDistPath = "dist/end-cover.dist.html";
-export const coverDistPaths = [
-  { path: frontCoverDistPath, image: "front-cover.png" },
-  { path: backCoverDistPath, image: "back-cover.png" },
-  { path: startCoverDistPath, image: "start-cover.png" },
-  { path: endCoverDistPath, image: "end-cover.png" },
-];
 
 // unifiedのプロセッサを作成する
 export const processorRehype = unified()

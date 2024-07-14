@@ -99,6 +99,7 @@ Appleシリコン版Macや、Intel版Macの場で動作確認しています。�
 
 ```ts
 export default {
+  size: "JIS-B5", // B5判と"105mm 173mm"（新書）サイズのみ対応
   title: "(本のタイトル)",
   author: "(著者名)",
   publisher: "(サークル名)",
@@ -120,6 +121,13 @@ brタグで改行ができます。`,
       image: "../images/(プロファイル画像を置いて指定する).png",
     },
   ],
+  cover: {
+    // TODO: 表紙画像が必要な場合は置いて指定してください
+    // front: "front-cover.png",
+    // back: "back-cover.png",
+    // start: "start-cover.png",
+    // end: "end-cover.png",
+  },
   copyright: "(コピーライトを書く)",
 };
 ```
