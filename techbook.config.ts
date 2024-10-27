@@ -28,6 +28,8 @@ brタグで改行ができます。`,
     // start: "start-cover.png",
     // end: "end-cover.png",
   },
+  // TODO: 付録がない場合は false にしてください
+  appendix: true,
   copyright: "(コピーライトを書く)",
 };
 export default config;
@@ -56,5 +58,6 @@ export interface MiraiBookConfig {
     start?: string;
     end?: string;
   };
+  appendix?: boolean;
   copyright: string;
 }

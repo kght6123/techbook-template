@@ -2,16 +2,17 @@ import fs from "fs";
 import Handlebars from "handlebars";
 import { Heading } from "mdast";
 
+import config from "../techbook.config";
 import { appendixCompile, appendixRegisterHelper } from "./appendix";
 import { pageBreakRegisterHelper } from "./breakBefore";
 import { chatRegisterHelper } from "./chat";
 import { colophonCompile } from "./colophon";
 import {
   chapterTemplateHtmlPath,
-  simpleChapterTemplateHtmlPath,
   handlebarCompileOptions,
   lockFileDistPath,
   processor,
+  simpleChapterTemplateHtmlPath,
 } from "./constants";
 import { coverCompile } from "./cover";
 import { docrefRegisterHelper } from "./docref";
@@ -22,7 +23,6 @@ import { profileCompile } from "./profile";
 import "./split";
 import "./switch";
 import { docsHeadingList, rightPillarChapterList, tocCompile } from "./toc";
-import config from "../techbook.config";
 
 // Handlebarsにヘルパーを登録する
 chatRegisterHelper();
@@ -35,8 +35,14 @@ pageBreakRegisterHelper();
 
 // HTMLのテンプレートをHandlebarsで読み込む
 const chapterTemplateHtml = Handlebars.compile(
-  fs.readFileSync(config.size === "105mm 173mm" ? simpleChapterTemplateHtmlPath : chapterTemplateHtmlPath).toString(),
-  handlebarCompileOptions,
+  fs
+    .readFileSync(
+      config.size === "105mm 173mm"
+        ? simpleChapterTemplateHtmlPath
+        : chapterTemplateHtmlPath,
+    )
+    .toString(),
+    handlebarCompileOptions,
 );
 
 // configの作成
@@ -121,9 +127,10 @@ for (const { src, dist, fileName, headings } of docsHeadingList) {
   // }
 }
 
-appendixCompile();
-
-console.log("complete!!! init appendixCompile.");
+if (config.appendix !== false) {
+  appendixCompile();
+  console.log("complete!!! init appendixCompile.");
+}
 
 // 最後にロックファイルを更新する
 // fs.writeFileSync(lockFileSrcPath, "");

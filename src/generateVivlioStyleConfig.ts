@@ -1,5 +1,5 @@
 import fs from "fs";
-import miraiBookConfig from "../techbook.config";
+import config from "../techbook.config";
 import {
   appendixDistPath,
   backCoverDistPath,
@@ -16,13 +16,13 @@ import {
 import { docsHeadingList } from "./toc";
 
 export default function generateVivlioStyleConfig() {
-  const { title, author, size } = miraiBookConfig;
+  const { title, author, size } = config;
   // MEMO: build（PDF生成）用にvivliostyle.config.cjsを生成する
   const docsEntryList = docsHeadingList.map(({ headings, dist }) => ({
     path: dist,
     title: headings?.find((v) => v.depth === 1)?.text,
   }));
-  const config = {
+  const _config = {
     title,
     author,
     language: "ja",
@@ -35,18 +35,18 @@ export default function generateVivlioStyleConfig() {
       introductionDistPath,
       ...docsEntryList,
       finallyDistPath,
-      appendixDistPath,
+      config.appendix !== false ? appendixDistPath : undefined,
       profileDistPath,
       colophonDistPath,
       endCoverDistPath,
       backCoverDistPath,
-    ],
+    ].filter((v) => !!v),
     workspaceDir: ".vivliostyle",
     toc: false,
   };
   fs.writeFileSync(
     "vivliostyle.config.cjs",
-    `module.exports = ${JSON.stringify(config, null, 0).replace(
+    `module.exports = ${JSON.stringify(_config, null, 0).replace(
       /"([^"]+)":/g,
       "$1:",
     )}`,
@@ -71,12 +71,12 @@ export default function generateVivlioStyleConfig() {
       { url: introductionDistPath },
       ...readingOrderList,
       { url: finallyDistPath },
-      { url: appendixDistPath },
+      config.appendix !== false ? { url: appendixDistPath } : undefined,
       { url: profileDistPath },
       { url: colophonDistPath },
       { url: endCoverDistPath },
       { url: backCoverDistPath },
-    ],
+    ].filter((v) => !!v),
     resources: [],
     links: [],
   };

@@ -10,7 +10,7 @@
     "@mermaid-js/mermaid-cli": "^10.9.1",
     "@shikijs/rehype": "^1.1.7",
     "@shikijs/transformers": "^1.1.7",
-    "@vivliostyle/cli": "^8.12.1",
+    "@vivliostyle/cli": "^8.16.0",
     "commander": "^12.1.0",
     "concurrently": "^8.2.2",
     "fs": "^0.0.1-security",

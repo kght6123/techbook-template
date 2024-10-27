@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import _ from "lodash";
 import { Heading, Text } from "mdast";
+import config from "../techbook.config";
 import { distDir, docsDir, processorRehype, tocDistPath } from "./constants";
 
 import { slug } from "github-slugger";
@@ -188,6 +189,9 @@ export const tocCompile = () => {
             </div>
           </a>
         </li>
+        ${
+          config.appendix !== false
+            ? `
         <li>
           <a
             href="appendix.dist.html"
@@ -198,6 +202,9 @@ export const tocCompile = () => {
             </div>
           </a>
         </li>
+        `
+            : ""
+        }
       </ol>
     </nav>
     <div class="break-bf-left"></div>
