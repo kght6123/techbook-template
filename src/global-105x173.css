@@ -72,6 +72,7 @@
   }
   @top-right {
     content: "第" counter(chapter) "章 " env(doc-title);
+    width: 350px;
   }
   @top-left-corner {
     content: element(topRightCorner);

@@ -24,14 +24,15 @@ import "./split";
 import "./switch";
 import { docsHeadingList, rightPillarChapterList, tocCompile } from "./toc";
 
+// 引数に"-kdp"がある場合はtrueにする
+const isKDP = process.argv.indexOf("-kdp") >= 0;
+
 // Handlebarsにヘルパーを登録する
 chatRegisterHelper();
 docrefRegisterHelper();
 appendixRegisterHelper();
 footnoteRegisterHelper();
 pageBreakRegisterHelper();
-
-// const args = process.argv.slice(1);
 
 // HTMLのテンプレートをHandlebarsで読み込む
 const chapterTemplateHtml = Handlebars.compile(
@@ -42,11 +43,11 @@ const chapterTemplateHtml = Handlebars.compile(
         : chapterTemplateHtmlPath,
     )
     .toString(),
-    handlebarCompileOptions,
+  handlebarCompileOptions,
 );
 
 // configの作成
-generateVivlioStyleConfig();
+generateVivlioStyleConfig({ isKDP });
 
 // プレコンパイルする
 const preCompile = (
@@ -89,7 +90,7 @@ const preCompile = (
 
 console.log("start preCompile.");
 
-coverCompile();
+coverCompile({ isKDP });
 tocCompile();
 introductionCompile();
 finallyCompile();

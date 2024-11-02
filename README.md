@@ -141,6 +141,7 @@ npm i # 依存関係をインストール
 npx playwright-core install --with-deps chromium # Chromiumブラウザをインストール（PDF出力向け）
 npm run dev # 開発モードでプレビュー（Ctrl＋Cで停止）
 npm run build # 本番モードでビルド（PDF出力）
+npm run kdp # Kindle Direct Publishing（KDP）用の本文PDFを作成
 ```
 
 `npm run dev`を実行すると、Chromeブラウザが立ち上がってプレビューが表示されます。プレビューが表示されない場合は一度Ctrl＋Cで停止して再度実行してください。
@@ -218,11 +219,13 @@ MITライセンスの下で公開されています。詳細については LICE
 
 [docs/99-1_samples.md](./docs/99-1_samples.md)を参照してください。
 
-## Print
+## Print（kindle direct publishing）
 
-プリント出力のための設定や注意事項を記載します。
+KDP（kindle direct publishing）によるプリント出力のための設定や注意事項を記載します。
 
-- 後日、KDPへの対応を予定しています。
+- `npm run kdp`でKDP用（kindle direct publishing）のPDFを作成できます。
+- 一部のコンテンツの長さによってはKDPでエラーになるので、その場合はIssueで報告いただくかCSSを修正してください。
+- KDP用のPDFはconfigのcoverのfront（表紙）とback（裏表紙）が除外され、start（中表紙）とend（裏中表紙）のimages指定が無視（テキストのみの表紙）になります。これはKDPは表紙と裏表紙を別途アップロードする必要があることと、ページ全体の画像がエラーになるためです。
 
 ## Note
 
@@ -259,9 +262,10 @@ npx browser-sync start --proxy 'localhost:3000' --files="dist/lockfile" --startP
 - [ ] デモサイトの作成をする
 - [ ] 変更されたファイルのみを上書き更新をする
 - [ ] Handlebarsで実装されたカスタムタグをRehype/Remarkプラグインとして実装する（Markdownとしての互換性の向上）
-- [ ] 書面デザインをWCAG2.1（とくにコントラスト面）への対応
 
 ## ChangeLog
 
 - v0.1 4/26 プロジェクト作成
 - v0.2 7/10 Windowsで起動しない問題を修正 #7、Mermaid生成の内部処理を公式のものに変更
+- v0.3 7/14 新書版サイズへの対応
+- v0.4 11/2 kindle direct publishing（KDP）への対応

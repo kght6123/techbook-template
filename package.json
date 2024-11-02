@@ -2,6 +2,7 @@
   "scripts": {
     "build": "npx vite-node src/cli.ts build",
     "dev": "npx vite-node src/cli.ts dev",
+    "kdp": "npx vite-node src/cli.ts kdp",
     "clean": "npx --yes clear-npx-cache",
     "check": "npx --yes @biomejs/biome check --apply-unsafe ./src"
   },
