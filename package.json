@@ -1,7 +1,9 @@
 {
+  "version": "0.4",
   "scripts": {
     "build": "npx vite-node src/cli.ts build",
     "dev": "npx vite-node src/cli.ts dev",
+    "kdp": "npx vite-node src/cli.ts kdp",
     "clean": "npx --yes clear-npx-cache",
     "check": "npx --yes @biomejs/biome check --apply-unsafe ./src"
   },
@@ -32,7 +34,8 @@
     "shiki": "^1.1.7",
     "unified": "^11.0.4",
     "vfile-matter": "^5.0.0",
-    "vite-node": "^1.3.1"
+    "vite-node": "^2.1.4",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.5.3",

@@ -15,7 +15,9 @@ import {
 } from "./constants";
 import { docsHeadingList } from "./toc";
 
-export default function generateVivlioStyleConfig() {
+export default function generateVivlioStyleConfig({
+  isKDP,
+}: { isKDP: boolean }) {
   const { title, author, size } = config;
   // MEMO: build（PDF生成）用にvivliostyle.config.cjsを生成する
   const docsEntryList = docsHeadingList.map(({ headings, dist }) => ({
@@ -29,7 +31,7 @@ export default function generateVivlioStyleConfig() {
     size: size,
     entryContext: ".",
     entry: [
-      frontCoverDistPath,
+      isKDP ? undefined : frontCoverDistPath,
       startCoverDistPath,
       tocDistPath,
       introductionDistPath,
@@ -39,7 +41,7 @@ export default function generateVivlioStyleConfig() {
       profileDistPath,
       colophonDistPath,
       endCoverDistPath,
-      backCoverDistPath,
+      isKDP ? undefined : backCoverDistPath,
     ].filter((v) => !!v),
     workspaceDir: ".vivliostyle",
     toc: false,
@@ -65,7 +67,7 @@ export default function generateVivlioStyleConfig() {
     inLanguage: "ja",
     dateModified: new Date().toISOString(),
     readingOrder: [
-      { url: frontCoverDistPath },
+      isKDP ? undefined : { url: frontCoverDistPath },
       { url: startCoverDistPath },
       { url: tocDistPath },
       { url: introductionDistPath },
@@ -75,7 +77,7 @@ export default function generateVivlioStyleConfig() {
       { url: profileDistPath },
       { url: colophonDistPath },
       { url: endCoverDistPath },
-      { url: backCoverDistPath },
+      isKDP ? undefined : { url: backCoverDistPath },
     ].filter((v) => !!v),
     resources: [],
     links: [],
