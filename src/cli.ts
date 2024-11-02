@@ -1,19 +1,19 @@
+import { version } from "../package.json";
 import { Command } from "commander";
 import concurrently from "concurrently";
 import config from "../techbook.config";
 
 const program = new Command();
-const cssSrcFileName =
-  config.size === "JIS-B5"
-    ? "global.css"
-    : config.size === "105mm 173mm"
-      ? "global-105x173.css"
-      : "global.css";
+const CSS_FILE_MAP = {
+  'JIS-B5': 'global.css',
+  '105mm 173mm': 'global-105x173.css'
+};
+const cssSrcFileName = CSS_FILE_MAP[config.size] || 'global.css';
 
 program
   .name("techbook-cli")
   .description("TechBook CLI utilities.")
-  .version("0.0.1");
+  .version(version);
 
 program
   .command("dev")
