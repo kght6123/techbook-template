@@ -1,49 +1,17 @@
 {
-  "version": "0.4",
+  "version": "0.15",
   "scripts": {
-    "build": "npx vite-node src/cli.ts build",
-    "dev": "npx vite-node src/cli.ts dev",
-    "kdp": "npx vite-node src/cli.ts kdp",
+    "build": "npx --yes techbook-template-cli build",
+    "dev": "npx --yes concurrently \"npx --yes techbook-template-cli dev\" \"npx --yes techbook-template-cli tailwind\" \"npx --yes techbook-template-cli viewer\" \"npx --yes techbook-template-cli browser\"",
+    "kdp": "npx --yes techbook-template-cli build -kdp",
     "clean": "npx --yes clear-npx-cache",
     "check": "npx --yes @biomejs/biome check --apply-unsafe ./src"
   },
   "dependencies": {
-    "@akebifiky/remark-simple-plantuml": "^1.0.2",
-    "@mermaid-js/mermaid-cli": "^10.9.1",
-    "@shikijs/rehype": "^1.1.7",
-    "@shikijs/transformers": "^1.1.7",
-    "@vivliostyle/cli": "^8.16.0",
-    "commander": "^12.1.0",
-    "concurrently": "^8.2.2",
-    "fs": "^0.0.1-security",
-    "h3": "^1.11.1",
-    "handlebars": "^4.7.8",
-    "hast-util-to-text": "^4.0.2",
-    "lodash": "^4.17.21",
-    "mermaid-isomorphic": "^2.2.1",
-    "mime": "^4.0.1",
-    "qrcode": "^1.5.3",
-    "rehype-mermaid": "^2.1.0",
-    "rehype-slug": "^6.0.0",
-    "rehype-stringify": "^10.0.0",
-    "remark-frontmatter": "^5.0.0",
-    "remark-gfm": "^4.0.0",
-    "remark-parse": "^11.0.0",
-    "remark-rehype": "^11.1.0",
-    "remark-toc": "^9.0.0",
-    "shiki": "^1.1.7",
-    "unified": "^11.0.4",
-    "vfile-matter": "^5.0.0",
-    "vite-node": "^2.1.4",
-    "yargs": "^17.7.2"
+    "techbook-template-cli": "github:kght6123/techbook-template-cli#v0.10-Release"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.5.3",
-    "@types/lodash": "^4.14.202",
-    "postcss": "^8.4.35",
-    "postcss-import": "^16.0.1",
-    "postcss-nesting": "^12.0.3",
-    "tailwindcss": "^3.4.1"
+    "@biomejs/biome": "1.5.3"
   },
   "volta": {
     "node": "20.11.1"

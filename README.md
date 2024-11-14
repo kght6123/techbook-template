@@ -6,6 +6,10 @@ Remark・Rehypeのカスタムタグとカスタムプラグインで、Re:View�
 > 現在、ベータ版的なプロジェクトです。執筆活動にともなって順次、必要な機能や不具合修正などを適用します。
 > Issueに何か不具合などあれば記載ください。
 
+> [!WARNING]
+> CLIプログラムを[techbook-template-cli](https://github.com/kght6123/techbook-template-cli)へ移動しました。
+> メインのプログラムの内容を確認する場合はこちらを参照ください。
+
 ## Overview
 
 各ディレクトリ構成の説明と、各ファイルの概要を説明します。
@@ -27,41 +31,38 @@ techbook-template
 ├── techbook.config.ts <-- 設定ファイル
 ├── package-lock.json
 ├── package.json
-├── postcss.config.cjs
 ├── dist <-- 出力ディレクトリ
-├── src
-│   ├── appendix-template.html <-- Appendixのテンプレート
-│   ├── appendix.ts <-- Appendixカスタムタグのコード
-│   ├── breakBefore.ts <-- breakBeforeカスタムタグのコード
-│   ├── chapter-template.html <-- 本文のテンプレート
-│   ├── chat.ts <-- Chatのカスタムタグのコード
-│   ├── codeBlockApplyTitlePlugin.ts <-- コードブロックにタイトルを追加するプラグイン
-│   ├── colophon-template.html <-- 奥付けのテンプレート
-│   ├── colophon.ts <-- 奥付けを作成するコード
-│   ├── constants.ts <-- 定数
-│   ├── cover-template.html <-- 表紙や裏表紙のテンプレート
-│   ├── cover.ts <-- 表紙や裏表紙を作成するコード
-│   ├── docref.ts <-- リファレンスタグのカスタムタグのコード
-│   ├── footnote.ts <-- 注釈のカスタムタグのコード
-│   ├── generateVivlioStyleConfig.ts <-- vivliostyle.config.cjsを生成するコード
-│   ├── global.css <-- グローバルCSS
-│   ├── imageApplyAttributesFromTitlePlugin.ts <-- 画像にタイトルや属性を設定するプラグイン
-│   ├── imageAttributesToTitlePlugin.ts <-- 画像のaltテキストから画像の属性とタイトルを取得するプラグイン
-│   ├── introduction-template.html <-- はじめにのテンプレート
-│   ├── introduction.ts <-- はじめにを作成するコード
-│   ├── main.ts <-- 各TypeScriptファイルを読み込んでHTMLを生成する
-│   ├── mermaidApplyTitlePlugin.ts <-- Mermaidにタイトルを追加するプラグイン
-│   ├── profile-template.html <-- プロフィールのテンプレート
-│   ├── profile.ts <-- プロフィールを作成するコード
-│   ├── split.ts <-- splitカスタムタグのコード
-│   ├── switch.ts <-- switch文カスタムタグのコード
-│   ├── tableApplyTitlePlugin.ts <-- テーブルにタイトルを追加するプラグイン
-│   ├── toc.ts　<-- 目次を作成するコード
-│   └── viewer.ts　<-- VivlioStyle Viewerのみを起動するコード
-├── tailwind.config.ts
-├── tsconfig.json
 └── vivliostyle.config.cjs <-- VivlioStyleの設定ファイル（自動生成）
 ```
+
+v0.15以前にあった、srcフォルダー配下のソースコードや各種設定ファイルは[techbook-template-cli](https://github.com/kght6123/techbook-template-cli)へ移動しました。
+
+> [!TIP]
+> 既存ユーザーの移行手順
+
+1. techbook-template-cliをインストール `npm install kght6123/techbook-template-cli#v0.10-Release`
+2. 不要なnpmモジュールを削除
+```sh
+npm remove \
+  @akebifiky/remark-simple-plantuml @mermaid-js/mermaid-cli \
+  @shikijs/rehype @shikijs/transformers @vivliostyle/cli \
+  commander concurrently fs h3 handlebars hast-util-to-text \
+  lodash mermaid-isomorphic mime qrcode rehype-mermaid \
+  rehype-slug rehype-stringify remark-frontmatter remark-gfm \
+  remark-parse remark-rehype remark-toc shiki unified \
+  vfile-matter vite-node yargs @types/lodash postcss \
+  postcss-import postcss-nesting tailwindcss
+```
+3. 不要なファイルを削除
+```sh
+rm bs-config.js
+rm postcss.config.cjs
+rm tailwind.config.ts
+rm tsconfig.json
+rm -R src
+```
+4. package.jsonを[最新](https://github.com/kght6123/techbook-template/blob/main/package.json)に置き換え
+5. README.mdを[最新](https://github.com/kght6123/techbook-template/blob/main/README.md)に置き換え
 
 ## Demo
 
@@ -265,7 +266,9 @@ npx browser-sync start --proxy 'localhost:3000' --files="dist/lockfile" --startP
 
 ## ChangeLog
 
-- v0.1 4/26 プロジェクト作成
-- v0.2 7/10 Windowsで起動しない問題を修正 #7、Mermaid生成の内部処理を公式のものに変更
-- v0.3 7/14 新書版サイズへの対応
-- v0.4 11/2 kindle direct publishing（KDP）への対応
+- v0.10 4/26 プロジェクト作成
+- v0.11 7/10 Windowsで起動しない問題を修正 #7、Mermaid生成の内部処理を公式のものに変更
+- v0.12 7/11 Playwrightが起動しないバグへの対応、npm scriptsの整理
+- v0.13 7/14 新書版サイズへの対応
+- v0.14 11/2 kindle direct publishing（KDP）への対応
+- v0.15 11/13 CLIプログラムを[techbook-template-cli](https://github.com/kght6123/techbook-template-cli)へ分割し外部ツール化
