@@ -35,7 +35,16 @@ techbook-template
 └── vivliostyle.config.cjs <-- VivlioStyleの設定ファイル（自動生成）
 ```
 
-srcフォルダー配下のソースコードや各種設定ファイルは[techbook-template-cli](https://github.com/kght6123/techbook-template-cli)へ移動しました。
+v0.15以前にあった、srcフォルダー配下のソースコードや各種設定ファイルは[techbook-template-cli](https://github.com/kght6123/techbook-template-cli)へ移動しました。
+
+> [!TIP]
+> 既存ユーザーの移行手順
+
+1. techbook-template-cliをインストール `npm install kght6123/techbook-template-cli#v0.10-Release`
+2. 不要なnpmモジュールを削除 `npm remove @akebifiky/remark-simple-plantuml @mermaid-js/mermaid-cli @shikijs/rehype @shikijs/transformers @vivliostyle/cli commander concurrently fs h3 handlebars hast-util-to-text lodash mermaid-isomorphic mime qrcode rehype-mermaid rehype-slug rehype-stringify remark-frontmatter remark-gfm remark-parse remark-rehype remark-toc shiki unified vfile-matter vite-node yargs @types/lodash postcss postcss-import postcss-nesting tailwindcss`
+3. 不要なファイルを削除 `rm bs-config.js; rm postcss.config.cjs; rm tailwind.config.ts; rm tsconfig.json; rm -R src`
+4. package.jsonを置き換え https://github.com/kght6123/techbook-template/blob/main/package.json
+5. README.mdを置き換え https://github.com/kght6123/techbook-template/blob/main/README.md
 
 ## Demo
 

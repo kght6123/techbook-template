@@ -1,9 +1,9 @@
 {
-  "version": "0.4",
+  "version": "0.15",
   "scripts": {
-    "build": "",
+    "build": "npx --yes techbook-template-cli build",
     "dev": "npx --yes concurrently \"npx --yes techbook-template-cli dev\" \"npx --yes techbook-template-cli tailwind\" \"npx --yes techbook-template-cli viewer\" \"npx --yes techbook-template-cli browser\"",
-    "kdp": "",
+    "kdp": "npx --yes techbook-template-cli build -kdp",
     "clean": "npx --yes clear-npx-cache",
     "check": "npx --yes @biomejs/biome check --apply-unsafe ./src"
   },
