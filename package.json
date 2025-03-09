@@ -1,5 +1,5 @@
 {
-  "version": "0.15",
+  "version": "0.15.1",
   "scripts": {
     "build": "npx --yes techbook-template-cli build",
     "dev": "npx --yes concurrently \"npx --yes techbook-template-cli dev\" \"npx --yes techbook-template-cli tailwind\" \"npx --yes techbook-template-cli viewer\" \"npx --yes techbook-template-cli browser\"",
