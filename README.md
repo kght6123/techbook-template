@@ -272,3 +272,4 @@ npx browser-sync start --proxy 'localhost:3000' --files="dist/lockfile" --startP
 - v0.13 7/14 新書版サイズへの対応
 - v0.14 11/2 kindle direct publishing（KDP）への対応
 - v0.15 11/13 CLIプログラムを[techbook-template-cli](https://github.com/kght6123/techbook-template-cli)へ分割し外部ツール化
+- v0.15.1 3/9 techbook-cliの最新化、バグ修正
