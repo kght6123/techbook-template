@@ -40,7 +40,7 @@ v0.15以前にあった、srcフォルダー配下のソースコードや各種
 > [!TIP]
 > 既存ユーザーの移行手順
 
-1. techbook-template-cliをインストール `npm install kght6123/techbook-template-cli#v0.10-Release`
+1. techbook-template-cliをインストール `npm install kght6123/techbook-template-cli#v0.12-Release`
 2. 不要なnpmモジュールを削除
 ```sh
 npm remove \

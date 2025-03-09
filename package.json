@@ -8,7 +8,7 @@
     "check": "npx --yes @biomejs/biome check --apply-unsafe ./src"
   },
   "dependencies": {
-    "techbook-template-cli": "github:kght6123/techbook-template-cli#v0.10-Release"
+    "techbook-template-cli": "github:kght6123/techbook-template-cli#v0.12-Release"
   },
   "devDependencies": {
     "@biomejs/biome": "1.5.3"
