@@ -75,6 +75,7 @@ TODO:
 - macOS Sonoma / Ventura が動くMac
 - Chromeブラウザをインストール済み（[インストール方法](https://support.google.com/chrome/answer/95346?hl=ja#zippy=%2Cmac)）
 - Node.jsをインストール済み（[インストール方法](https://nodejs.org/en/download)）
+  - バージョンは `20.19.0`以上、または`22.12.0`以上が必要です
 - VS Codeをインストール済み（[インストール方法](https://code.visualstudio.com/download)）
 - 使用フォント（[M PLUS Rounded 1c](https://fonts.google.com/specimen/M+PLUS+Rounded+1c)）
 
@@ -138,8 +139,7 @@ brタグで改行ができます。`,
 下記のnpmコマンドを実行すると、プロジェクトのプレビューやビルドができます。
 
 ```sh
-npm i # 依存関係をインストール
-npx playwright-core install --with-deps chromium # Chromiumブラウザをインストール（PDF出力向け）
+npm i # 依存関係をインストール（PDF出力用のブラウザもあわせて用意されます）
 npm run dev # 開発モードでプレビュー（Ctrl＋Cで停止）
 npm run build # 本番モードでビルド（PDF出力）
 npm run kdp # Kindle Direct Publishing（KDP）用の本文PDFを作成
