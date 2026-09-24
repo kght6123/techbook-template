@@ -4,10 +4,10 @@ description:
   追加のプラグインやHandlebar.jsで拡張した構文もふくめて、全ての構文を確認するためのサンプルになります。
 color:
   primary:
-    "500": "var(--tw-blue-500)"
-    "400": "var(--tw-blue-400)"
-    "200": "var(--tw-blue-200)"
-    "50": "var(--tw-blue-50)"
+    "500": "#3b82f6"
+    "400": "#60a5fa"
+    "200": "#bfdbfe"
+    "50": "#eff6ff"
 columns: false
 ---
 # 使える構文のサンプル集

@@ -31,11 +31,24 @@ techbook-template
 ├── techbook.config.ts <-- 設定ファイル
 ├── package-lock.json
 ├── package.json
+├── custom.css <-- 任意。独自のCSSを書くファイル（あれば組版CSSの末尾に連結される）
 ├── dist <-- 出力ディレクトリ
 └── vivliostyle.config.cjs <-- VivlioStyleの設定ファイル（自動生成）
 ```
 
 v0.15以前にあった、srcフォルダー配下のソースコードや各種設定ファイルは[techbook-template-cli](https://github.com/kght6123/techbook-template-cli)へ移動しました。
+
+## CLI v1.0.0 での変更点（Tailwind CSS の廃止）
+
+CLI v1.0.0 で Tailwind CSS への依存がなくなりました。ビルドのたびに `npx tailwindcss` を取得・実行する処理がなくなり、ビルドが速く、ネットワークやTailwindのバージョン差で失敗しなくなります。標準テンプレートの見た目は v0.21 と同一です。
+
+CLI v0.21 以前を使っている本のプロジェクトは、`package.json` の参照タグをそのままにしておけば更新されません。更新する場合は以下の3点を直してください。
+
+1. `npm run dev` から `techbook-template-cli tailwind` の呼び出しを外す
+2. frontmatter の色指定を `var(--tw-blue-500)` などから色コード（`#3b82f6`）へ書き換える
+3. Markdown本文に自分で書いた Tailwind のユーティリティクラスは、`custom.css` に通常のCSSとして書き直す
+
+詳しい手順は[CLI側のREADME](https://github.com/kght6123/techbook-template-cli#v100-での変更点tailwind-css-の廃止)を参照してください。
 
 > [!TIP]
 > 既存ユーザーの移行手順
@@ -163,10 +176,10 @@ description:
   VivlioStyleについて、利用しているツールやサービスを中心に解説します。
 color:
   primary:
-    "500": "var(--tw-rose-500)"
-    "400": "var(--tw-rose-400)"
-    "200": "var(--tw-rose-200)"
-    "50": "var(--tw-rose-50)"
+    "500": "#f43f5e"
+    "400": "#fb7185"
+    "200": "#fecdd3"
+    "50": "#fff1f2"
 columns: true
 ---
 
