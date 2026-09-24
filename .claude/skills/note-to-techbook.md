@@ -56,36 +56,36 @@ title, pubDate, modifiedDate, guid, link, creator, status, draft
 変換時にその章のテーマカラーをユーザーに選んでもらう。
 以下の選択肢を提示し、章の内容・雰囲気に合うものを選択させる:
 
-| カラー名 | 変数名 | イメージ |
-|---------|--------|---------|
-| blue（デフォルト） | `--tw-blue-*` | 技術・汎用 |
-| sky | `--tw-sky-*` | 軽やか・クラウド |
-| cyan | `--tw-cyan-*` | デジタル・清涼 |
-| indigo | `--tw-indigo-*` | 知性・深み |
-| violet | `--tw-violet-*` | 創造・AI |
-| purple | `--tw-purple-*` | 独創・魔法 |
-| fuchsia | `--tw-fuchsia-*` | 鮮やか・個性 |
-| pink | `--tw-pink-*` | 柔らか・可愛い |
-| rose | `--tw-rose-*` | 情熱・愛 |
-| red | `--tw-red-*` | 警告・強調 |
-| orange | `--tw-orange-*` | エネルギー・活発 |
-| amber | `--tw-amber-*` | 温かみ・注意 |
-| yellow | `--tw-yellow-*` | 明るさ・アイデア |
-| lime | `--tw-lime-*` | 新鮮・軽快 |
-| green | `--tw-green-*` | 安定・自然 |
-| emerald | `--tw-emerald-*` | 成功・バランス |
-| teal | `--tw-teal-*` | 落ち着き・調和 |
-| slate | `--tw-slate-*` | クール・モノトーン |
+| カラー名 | 500 | 400 | 200 | 50 | イメージ |
+|---------|-----|-----|-----|----|---------|
+| blue（デフォルト） | `#3b82f6` | `#60a5fa` | `#bfdbfe` | `#eff6ff` | 技術・汎用 |
+| sky | `#0ea5e9` | `#38bdf8` | `#bae6fd` | `#f0f9ff` | 軽やか・クラウド |
+| cyan | `#06b6d4` | `#22d3ee` | `#a5f3fc` | `#ecfeff` | デジタル・清涼 |
+| indigo | `#6366f1` | `#818cf8` | `#c7d2fe` | `#eef2ff` | 知性・深み |
+| violet | `#8b5cf6` | `#a78bfa` | `#ddd6fe` | `#f5f3ff` | 創造・AI |
+| purple | `#a855f7` | `#c084fc` | `#e9d5ff` | `#faf5ff` | 独創・魔法 |
+| fuchsia | `#d946ef` | `#e879f9` | `#f5d0fe` | `#fdf4ff` | 鮮やか・個性 |
+| pink | `#ec4899` | `#f472b6` | `#fbcfe8` | `#fdf2f8` | 柔らか・可愛い |
+| rose | `#f43f5e` | `#fb7185` | `#fecdd3` | `#fff1f2` | 情熱・愛 |
+| red | `#ef4444` | `#f87171` | `#fecaca` | `#fef2f2` | 警告・強調 |
+| orange | `#f97316` | `#fb923c` | `#fed7aa` | `#fff7ed` | エネルギー・活発 |
+| amber | `#f59e0b` | `#fbbf24` | `#fde68a` | `#fffbeb` | 温かみ・注意 |
+| yellow | `#eab308` | `#facc15` | `#fef08a` | `#fefce8` | 明るさ・アイデア |
+| lime | `#84cc16` | `#a3e635` | `#d9f99d` | `#f7fee7` | 新鮮・軽快 |
+| green | `#22c55e` | `#4ade80` | `#bbf7d0` | `#f0fdf4` | 安定・自然 |
+| emerald | `#10b981` | `#34d399` | `#a7f3d0` | `#ecfdf5` | 成功・バランス |
+| teal | `#14b8a6` | `#2dd4bf` | `#99f6e4` | `#f0fdfa` | 落ち着き・調和 |
+| slate | `#64748b` | `#94a3b8` | `#e2e8f0` | `#f8fafc` | クール・モノトーン |
 
 選択後、frontmatter の `color.primary` ブロックを以下の形式で設定する（例: `violet` を選んだ場合）:
 
 ```yaml
 color:
   primary:
-    "500": "var(--tw-violet-500)"
-    "400": "var(--tw-violet-400)"
-    "200": "var(--tw-violet-200)"
-    "50": "var(--tw-violet-50)"
+    "500": "#8b5cf6"
+    "400": "#a78bfa"
+    "200": "#ddd6fe"
+    "50": "#f5f3ff"
 ```
 
 既存の `color` ブロックがある場合は上書きする（ユーザーが「変更しない」を選んだ場合はそのまま）。
@@ -99,10 +99,10 @@ description2: >-
   （確認済みの詳細説明文）
 color:
   primary:
-    "500": "var(--tw-{color}-500)"
-    "400": "var(--tw-{color}-400)"
-    "200": "var(--tw-{color}-200)"
-    "50": "var(--tw-{color}-50)"
+    "500": "（選んだカラーの500の色コード）"
+    "400": "（選んだカラーの400の色コード）"
+    "200": "（選んだカラーの200の色コード）"
+    "50": "（選んだカラーの50の色コード）"
 columns: false
 ---
 ```
