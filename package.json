@@ -1,5 +1,5 @@
 {
-  "version": "0.15.1",
+  "version": "0.16.0",
   "scripts": {
     "build": "npx --yes techbook-template-cli build",
     "dev": "npx --yes concurrently \"npx --yes techbook-template-cli dev\" \"npx --yes techbook-template-cli viewer\" \"npx --yes techbook-template-cli browser\"",
@@ -8,7 +8,7 @@
     "check": "npx --yes @biomejs/biome check --apply-unsafe ./src"
   },
   "dependencies": {
-    "techbook-template-cli": "github:kght6123/techbook-template-cli#v1.0.0-Release"
+    "techbook-template-cli": "github:kght6123/techbook-template-cli#v1.0.4-Release"
   },
   "devDependencies": {
     "@biomejs/biome": "1.5.3"
